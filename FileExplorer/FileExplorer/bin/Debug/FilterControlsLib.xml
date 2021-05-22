@@ -1,0 +1,373 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FilterControlsLib</name>
+    </assembly>
+    <members>
+        <member name="T:FilterControlsLib.Factory">
+            <summary>
+            Implements factory methods that creates library objects that are accessible
+            through interfaces but are otherwise invisible for the outside world.
+            </summary>
+        </member>
+        <member name="M:FilterControlsLib.Factory.CreateFilterComboBoxViewModel">
+            <summary>
+            returns a new view model instance that can be used to drive a ComboBox
+            filter control. A ComboBox filter control contains a list of filter options
+            that can be selected by the user to adjust the list of items visible in a
+            view.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FilterControlsLib.Factory.CreateFilterItem">
+            <summary>
+            returns one new view model ITEM instance that can be used to
+            drive 1 entry in a filter control. A filter control contains a
+            list of filter options that can be selected by the user to adjust
+            the list of items visible in a view.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FilterControlsLib.ViewModels.Base.ViewModelBase">
+            <summary>
+            Implements a base class for all viewmodel classes
+            that implements <seealso cref="T:System.ComponentModel.INotifyPropertyChanged"/> interface for binding.
+            </summary>
+        </member>
+        <member name="E:FilterControlsLib.ViewModels.Base.ViewModelBase.PropertyChanged">
+            <summary>
+            Standard implementation of <seealso cref="T:System.ComponentModel.INotifyPropertyChanged"/>.
+            </summary>
+        </member>
+        <member name="M:FilterControlsLib.ViewModels.Base.ViewModelBase.RaisePropertyChanged``1(System.Linq.Expressions.Expression{System.Func{``0}})">
+            <summary>
+            Tell bound controls (via WPF binding) to refresh their display.
+            
+            Sample call: this.NotifyPropertyChanged(() => this.IsSelected);
+            where 'this' is derived from <seealso cref="T:FilterControlsLib.ViewModels.Base.ViewModelBase"/>
+            and IsSelected is a property.
+            </summary>
+            <typeparam name="TProperty"></typeparam>
+            <param name="property"></param>
+        </member>
+        <member name="M:FilterControlsLib.ViewModels.Base.ViewModelBase.RaisePropertyChanged(System.String)">
+            <summary>
+            Tell bound controls (via WPF binding) to refresh their display.
+            Standard implementation through <seealso cref="T:System.ComponentModel.INotifyPropertyChanged"/>.
+            </summary>
+            <param name="propertyName"></param>
+        </member>
+        <member name="T:FilterControlsLib.ViewModels.FilterComboBoxViewModel">
+            <summary>
+            Class implements a viewmodel for a combo box like control that
+            lists a list of regular filter expressions to choose from.
+            </summary>
+        </member>
+        <member name="M:FilterControlsLib.ViewModels.FilterComboBoxViewModel.#ctor">
+            <summary>
+            Class constructor
+            </summary>
+        </member>
+        <member name="E:FilterControlsLib.ViewModels.FilterComboBoxViewModel.OnFilterChanged">
+            <summary>
+            Event is fired whenever the path in the text portion of the combobox is changed.
+            </summary>
+        </member>
+        <member name="P:FilterControlsLib.ViewModels.FilterComboBoxViewModel.CurrentItems">
+            <summary>
+            Gets the list of current filter items in filter view,
+            eg: "BAT | *.bat; *.cmd", ... ,"XML | *.xml; *.xsd"
+            </summary>
+        </member>
+        <member name="P:FilterControlsLib.ViewModels.FilterComboBoxViewModel.SelectedItem">
+            <summary>
+            Gets the selected filter item.
+            </summary>
+        </member>
+        <member name="P:FilterControlsLib.ViewModels.FilterComboBoxViewModel.CurrentFilter">
+            <summary>
+            Get/sets viewmodel data pointing at the path
+            of the currently selected folder.
+            </summary>
+        </member>
+        <member name="P:FilterControlsLib.ViewModels.FilterComboBoxViewModel.CurrentFilterToolTip">
+            <summary>
+            Gets an informative text for the currently selected filter.
+            </summary>
+        </member>
+        <member name="P:FilterControlsLib.ViewModels.FilterComboBoxViewModel.SelectionChanged">
+            <summary>
+            Command is invoked when the combobox view tells the viewmodel
+            that the current path selection has changed (via selection changed
+            event or keyup events).
+            
+            The parameter can be an array of objects
+            containing objects of the <seealso cref="T:FilterControlsLib.ViewModels.FilterItemViewModel"/> type or
+            p can also be string.
+            
+            Each parameter item that adheres to the above types results in
+            a OnFilterChanged event being fired with the folder path
+            as parameter.
+            </summary>
+        </member>
+        <member name="M:FilterControlsLib.ViewModels.FilterComboBoxViewModel.ClearFilter">
+            <summary>
+            Clears the current list of filters and resets everything
+            that is file filter related to null.
+            </summary>
+        </member>
+        <member name="M:FilterControlsLib.ViewModels.FilterComboBoxViewModel.AddFilter(System.String,System.Boolean)">
+            <summary>
+            Add a new filter argument to the list of filters and
+            select this filter if <paramref name="bSelectNewFilter"/>
+            indicates it.
+            </summary>
+            <param name="filterString"></param>
+            <param name="bSelectNewFilter"></param>
+        </member>
+        <member name="M:FilterControlsLib.ViewModels.FilterComboBoxViewModel.AddFilter(System.String,System.String,System.Boolean)">
+            <summary>
+            Add a new filter argument to the list of filters and
+            select this filter if <paramref name="bSelectNewFilter"/>
+            indicates it.
+            </summary>
+            <param name="name"></param>
+            <param name="filterString"></param>
+            <param name="bSelectNewFilter"></param>
+        </member>
+        <member name="M:FilterControlsLib.ViewModels.FilterComboBoxViewModel.FindFilter(System.String,System.String)">
+            <summary>
+            Attempts to find a filter in the list of current filters
+            based on the current display name and actual filter string (eg '*.tex').
+            </summary>
+            <param name="name"></param>
+            <param name="filterString"></param>
+            <returns>A collection of filters found or null.</returns>
+        </member>
+        <member name="M:FilterControlsLib.ViewModels.FilterComboBoxViewModel.SetCurrentFilter(System.String,System.String)">
+            <summary>
+            Applies the current display name and actual filter string (eg '*.tex')
+            as current file filter on the list of files being displayed.
+            </summary>
+            <param name="filterDisplayName"></param>
+            <param name="filterText"></param>
+        </member>
+        <member name="M:FilterControlsLib.ViewModels.FilterComboBoxViewModel.SelectionChanged_Executed(System.Object)">
+            <summary>
+            Method executes when the SelectionChanged command is invoked.
+            The parameter <paramref name="p"/> can be an array of objects
+            containing objects of the <seealso cref="T:FileListView.Interfaces.ILVItemViewModel"/> type or
+            p can also be string.
+            
+            Each parameter item that adheres to the above types results in
+            a OnFilterChanged event being fired with the folder path
+            as parameter.
+            </summary>
+            <param name="p"></param>
+        </member>
+        <member name="M:FilterControlsLib.ViewModels.FilterComboBoxViewModel.IsPathDirectory(System.String)">
+            <summary>
+            Determine whether a given path is an exeisting directory or not.
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FilterControlsLib.ViewModels.FilterItemViewModel">
+            <summary>
+            The Viewmodel for filter item displayed in a list of filters.
+            </summary>
+        </member>
+        <member name="M:FilterControlsLib.ViewModels.FilterItemViewModel.#ctor(System.String)">
+            <summary>
+            Class constructor
+            </summary>
+        </member>
+        <member name="M:FilterControlsLib.ViewModels.FilterItemViewModel.#ctor(System.String,System.String)">
+            <summary>
+            Class constructor
+            </summary>
+        </member>
+        <member name="M:FilterControlsLib.ViewModels.FilterItemViewModel.#ctor(FileSystemModels.Models.FilterItemModel)">
+            <summary>
+            Construct viewmodel from model
+            </summary>
+            <param name="filterItemModel"></param>
+        </member>
+        <member name="M:FilterControlsLib.ViewModels.FilterItemViewModel.#ctor">
+            <summary>
+            Protected statndard class constructor
+            (Consumers of this class shall use the parameterized version).
+            </summary>
+        </member>
+        <member name="P:FilterControlsLib.ViewModels.FilterItemViewModel.FilterText">
+            <summary>
+            Gets the regular expression based filter string eg: '*.exe'.
+            </summary>
+        </member>
+        <member name="P:FilterControlsLib.ViewModels.FilterItemViewModel.FilterDisplayName">
+            <summary>
+            Gets the name for this filter
+            (human readable for display in tool tip or label).
+            </summary>
+        </member>
+        <member name="M:FilterControlsLib.ViewModels.FilterItemViewModel.ToString">
+            <summary>
+            Standard method to display contents of this class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FilterControlsLib.Collections.SortableObservableCollection`1">
+            <summary>
+            Class implements a sorted observable collection.
+            
+            Source: http://elegantcode.com/2009/05/14/write-a-sortable-observablecollection-for-wpf/
+            </summary>
+        </member>
+        <member name="M:FilterControlsLib.Collections.SortableObservableCollection`1.#ctor">
+            <summary>
+            Standard class constructor
+            </summary>
+        </member>
+        <member name="M:FilterControlsLib.Collections.SortableObservableCollection`1.#ctor(System.Collections.Generic.List{`0})">
+            <summary>
+            Class constructor from IList interface. />
+            </summary>
+            <param name="list"></param>
+        </member>
+        <member name="M:FilterControlsLib.Collections.SortableObservableCollection`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Class constructor from IEnumerable.
+            </summary>
+            <param name="collection"></param>
+        </member>
+        <member name="M:FilterControlsLib.Collections.SortableObservableCollection`1.Sort``1(System.Func{`0,``0},System.ComponentModel.ListSortDirection)">
+            <summary>
+            Sort in descending or ascending order via lamda expression:
+            'MySortableList.Sort(x => x.Name, ListSortDirection.Ascending);'
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <param name="keySelector"></param>
+            <param name="direction"></param>
+        </member>
+        <member name="M:FilterControlsLib.Collections.SortableObservableCollection`1.Sort``1(System.Func{`0,``0},System.Collections.Generic.IComparer{``0})">
+            <summary>
+            Sort in descending or ascending order^via keySelector.
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <param name="keySelector"></param>
+            <param name="comparer"></param>
+        </member>
+        <member name="T:FilterControlsLib.Interfaces.IFilterComboBoxViewModel">
+            <summary>
+            Defines members and properties of a viewmodel
+            for a combo box like control that lists a list
+            of regular filter expressions to choose from.
+            </summary>
+        </member>
+        <member name="E:FilterControlsLib.Interfaces.IFilterComboBoxViewModel.OnFilterChanged">
+            <summary>
+            Event is fired whenever the path in the text portion
+            of the combobox is changed. Client applications should
+            listen to this event if they want to be informed when
+            the user selects another item.
+            </summary>
+        </member>
+        <member name="P:FilterControlsLib.Interfaces.IFilterComboBoxViewModel.CurrentItems">
+            <summary>
+            Gets the list of current filter items in filter view,
+            eg: "BAT | *.bat; *.cmd", ... ,"XML | *.xml; *.xsd"
+            </summary>
+        </member>
+        <member name="P:FilterControlsLib.Interfaces.IFilterComboBoxViewModel.SelectedItem">
+            <summary>
+            Gets the selected filter item.
+            </summary>
+        </member>
+        <member name="P:FilterControlsLib.Interfaces.IFilterComboBoxViewModel.CurrentFilter">
+            <summary>
+            Get/sets viewmodel data pointing at the path
+            of the currently selected folder.
+            </summary>
+        </member>
+        <member name="P:FilterControlsLib.Interfaces.IFilterComboBoxViewModel.CurrentFilterToolTip">
+            <summary>
+            Gets an informative text for the currently selected filter.
+            </summary>
+        </member>
+        <member name="M:FilterControlsLib.Interfaces.IFilterComboBoxViewModel.ClearFilter">
+            <summary>
+            Clears the current list of filters and resets everything
+            that is file filter related to null.
+            </summary>
+        </member>
+        <member name="M:FilterControlsLib.Interfaces.IFilterComboBoxViewModel.AddFilter(System.String,System.Boolean)">
+            <summary>
+            Add a new filter argument to the list of filters and
+            select this filter if <paramref name="bSelectNewFilter"/>
+            indicates it.
+            </summary>
+            <param name="filterString"></param>
+            <param name="bSelectNewFilter"></param>
+        </member>
+        <member name="M:FilterControlsLib.Interfaces.IFilterComboBoxViewModel.AddFilter(System.String,System.String,System.Boolean)">
+            <summary>
+            Add a new filter argument to the list of filters and
+            select this filter if <paramref name="bSelectNewFilter"/>
+            indicates it.
+            </summary>
+            <param name="name"></param>
+            <param name="filterString"></param>
+            <param name="bSelectNewFilter"></param>
+        </member>
+        <member name="M:FilterControlsLib.Interfaces.IFilterComboBoxViewModel.FindFilter(System.String,System.String)">
+            <summary>
+            Attempts to find a filter in the list of current filters
+            based on the current display name and actual filter string (eg '*.tex').
+            </summary>
+            <param name="name"></param>
+            <param name="filterString"></param>
+            <returns>A collection of filters found or null.</returns>
+        </member>
+        <member name="M:FilterControlsLib.Interfaces.IFilterComboBoxViewModel.SetCurrentFilter(System.String,System.String)">
+            <summary>
+            Applies the current display name and actual filter string (eg '*.tex')
+            as current file filter on the list of files being displayed.
+            </summary>
+            <param name="filterDisplayName"></param>
+            <param name="filterText"></param>
+        </member>
+        <member name="T:FilterControlsLib.Interfaces.IFilterItemViewModel">
+            <summary>
+            Defines the properties and methods of a view model
+            for a filter item displayed in a list of filters.
+            </summary>
+        </member>
+        <member name="P:FilterControlsLib.Interfaces.IFilterItemViewModel.FilterText">
+            <summary>
+            Gets the regular expression based filter string eg: '*.exe'.
+            </summary>
+        </member>
+        <member name="P:FilterControlsLib.Interfaces.IFilterItemViewModel.FilterDisplayName">
+            <summary>
+            Gets the name for this filter
+            (human readable for display in tool tip or label).
+            </summary>
+        </member>
+        <member name="T:FilterControlsLib.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:FilterControlsLib.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:FilterControlsLib.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>

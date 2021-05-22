@@ -1,0 +1,1948 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FolderBrowser</name>
+    </assembly>
+    <members>
+        <member name="T:FolderBrowser.Converters.BoolToVisibilityConverter">
+            <summary>
+            Converts a boolean value into a configurable
+            value of type <seealso cref="T:System.Windows.Visibility"/>.
+            
+            Source: http://stackoverflow.com/questions/3128023/wpf-booleantovisibilityconverter-that-converts-to-hidden-instead-of-collapsed-wh
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Converters.BoolToVisibilityConverter.#ctor">
+            <summary>
+            Class constructor
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Converters.BoolToVisibilityConverter.TrueValue">
+            <summary>
+            Gets/sets the <see cref="T:System.Windows.Visibility"/> value that is associated
+            (converted into) with the boolean true value.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Converters.BoolToVisibilityConverter.FalseValue">
+            <summary>
+            Gets/sets the <see cref="T:System.Windows.Visibility"/> value that is associated
+            (converted into) with the boolean false value.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Converters.BoolToVisibilityConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Convertzs a bool value into <see cref="T:System.Windows.Visibility"/> as configured in the
+            <see cref="P:FolderBrowser.Converters.BoolToVisibilityConverter.TrueValue"/> and <see cref="P:FolderBrowser.Converters.BoolToVisibilityConverter.FalseValue"/> properties.
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.Converters.BoolToVisibilityConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Convertzs a <see cref="T:System.Windows.Visibility"/> value into bool as configured in the
+            <see cref="P:FolderBrowser.Converters.BoolToVisibilityConverter.TrueValue"/> and <see cref="P:FolderBrowser.Converters.BoolToVisibilityConverter.FalseValue"/> properties.
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FolderBrowser.Converters.BrowseItemTypeToImageConverter">
+            <summary>
+            XAML markup extension to convert <seealso cref="T:FileSystemModels.Models.FSItems.Base.FSItemType"/> enum members
+            into <seealso cref="T:System.Windows.Media.ImageSource"/> from ResourceDictionary or fallback from static resource.
+            </summary>
+        </member>
+        <member name="F:FolderBrowser.Converters.BrowseItemTypeToImageConverter.Logger">
+            <summary>
+            Log4net logger facility.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Converters.BrowseItemTypeToImageConverter.#ctor">
+            <summary>
+            Class constructor
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Converters.BrowseItemTypeToImageConverter.ProvideValue(System.IServiceProvider)">
+            <summary>
+            Returns an object that is provided
+            as the value of the target property for this markup extension.
+            
+            When a XAML processor processes a type node and member value that is a markup extension,
+            it invokes the ProvideValue method of that markup extension and writes the result into the
+            object graph or serialization stream. The XAML object writer passes service context to each
+            such implementation through the serviceProvider parameter.
+            </summary>
+            <param name="serviceProvider"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.Converters.BrowseItemTypeToImageConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a <seealso cref="T:FileSystemModels.Models.FSItems.Base.FSItemType"/> enumeration member
+            into a dynamic resource or a fallback image Url (if dynamic resource is not available).
+            </summary>
+            <param name="values"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.Converters.BrowseItemTypeToImageConverter.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts back method is not implemented and will throw an exception.
+            </summary>
+            <param name="value"></param>
+            <param name="targetTypes"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.Converters.BrowseItemTypeToImageConverter.GetNotExpandedImages(FileSystemModels.Models.FSItems.Base.FSItemType)">
+            <summary>
+            Get a DynamicResource from ResourceDictionary or a static ImageSource (as fallback) for not expanded folder item.
+            </summary>
+            <param name="itemType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.Converters.BrowseItemTypeToImageConverter.GetExpandedImages(FileSystemModels.Models.FSItems.Base.FSItemType)">
+            <summary>
+            Get a DynamicResource from ResourceDictionary or a static ImageSource (as fallback) for expanded folder item.
+            </summary>
+            <param name="itemType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FolderBrowser.Converters.InverseBooleanConverter">
+            <summary>
+            Convert boolean true into false and vice versa.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Converters.InverseBooleanConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a boolean value into its inverse value.
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.Converters.InverseBooleanConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a boolean value into its inverse value.
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FolderBrowser.Converters.SpecialFolderToImageResourceConverter">
+            <summary>
+            Converte <seealso cref="T:System.Environment.SpecialFolder"/> enum members
+            into <seealso cref="T:System.Windows.Media.ImageSource"/> from ResourceDictionary or fallback from static resource.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Converters.SpecialFolderToImageResourceConverter.#ctor">
+            <summary>
+            Class constructor
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Converters.SpecialFolderToImageResourceConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Converts a <seealso cref="T:System.Environment.SpecialFolder"/> enumeration member
+            into a dynamic resource or a fallback image Url (if dynamic resource is not available).
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.Converters.SpecialFolderToImageResourceConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Convert back method is not implemented an will throw an exception upon execution.
+            </summary>
+            <param name="value"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FolderBrowser.Converters.UpdateBindingConverter">
+            <summary>
+            Implements a Converter that can be used to relax the UI thread
+            when frequent updates can cause the application to wait just for
+            the UI to catch-up ...
+            
+            Based on:
+            Prevent a binding from updating too frequently | Josh Smith on WPF
+            https://joshsmithonwpf.wordpress.com/2007/08/20/prevent-a-binding-from-updating-too-frequently/
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Converters.UpdateBindingConverter.Convert(System.Object[],System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            The convert expects 2 bindings:
+            1> True/False value to determine whether updates should be shown to UI or not.
+            2> The binding that should be shown to you UI or not.
+            
+            Sample Code:
+            
+            </summary>
+            <param name="values"></param>
+            <param name="targetType"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.Converters.UpdateBindingConverter.ConvertBack(System.Object,System.Type[],System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Method is not implemented and will throw <see cref="T:System.NotImplementedException"/>.
+            </summary>
+            <param name="value"></param>
+            <param name="targetTypes"></param>
+            <param name="parameter"></param>
+            <param name="culture"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FolderBrowser.Interfaces.IDriveViewModel">
+            <summary>
+            Defines the interface to a viewmodel that binds to
+            a drive item in the view. 
+            </summary>
+        </member>
+        <member name="T:FolderBrowser.Interfaces.ITreeItemViewModel">
+            <summary>
+            Defines an interface to an object in the tree hierarchy that can have
+            child items (e.g.: folders) and a parent item (drive or folder).
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Interfaces.ITreeItemViewModel.Folders">
+            <summary>
+            Gets a collection of sub-folders (if any) that are contained within this folder.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Interfaces.ITreeItemViewModel.HasDummyChild">
+            <summary>
+            Determine whether child is a dummy (must be evaluated and replaced
+            with real data) or not.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Interfaces.ITreeItemViewModel.IsSelected">
+            <summary>
+            Get/set whether this folder is currently selected or not.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Interfaces.ITreeItemViewModel.ChildAdd(FolderBrowser.Interfaces.ITreeItemViewModel)">
+            <summary>
+            Adds the folder item into the collection of sub-folders
+            of this folder.
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:FolderBrowser.Interfaces.ITreeItemViewModel.ChildrenClear">
+            <summary>
+            Remove all sub-folders from a given folder.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Interfaces.ITreeItemViewModel.ChildrenLoad">
+            <summary>
+            Load all sub-folders into the Folders collection.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Interfaces.ITreeItemViewModel.ChildrenLoadAsync">
+            <summary>
+            Load all sub-folders into the Folders collection.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Interfaces.ITreeItemViewModel.ChildTryGet(System.String)">
+            <summary>
+            Attempts to find an item with the given name in the list of child items
+            below this item and returns it or null.
+            </summary>
+            <param name="folderName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.Interfaces.ITreeItemViewModel.ChildRename(System.String,System.String)">
+            <summary>
+            Renames a child below this item.
+            </summary>
+            <param name="oldName"></param>
+            <param name="newName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.Interfaces.ITreeItemViewModel.CreateNewDirectory">
+            <summary>
+            Create a new folder with a standard name
+            'New folder n' underneath this folder.
+            </summary>
+            <returns>a viewmodel of the newly created directory or null</returns>
+        </member>
+        <member name="M:FolderBrowser.Interfaces.ITreeItemViewModel.Rename(System.String)">
+            <summary>
+            Rename the name of the folder into a new name.
+            </summary>
+            <param name="newFolderName"></param>
+        </member>
+        <member name="M:FolderBrowser.Interfaces.ITreeItemViewModel.ShowNotification(System.String,System.String,System.Windows.Media.Imaging.BitmapImage)">
+            <summary>
+            Shows a pop-notification message with the given title and text.
+            </summary>
+            <param name="title"></param>
+            <param name="message"></param>
+            <param name="imageIcon"></param>
+            <returns>true if the event was succesfully fired.</returns>
+        </member>
+        <member name="T:FolderBrowser.Interfaces.IParent">
+            <summary>
+            Models an interfaces to an item that can
+            tell is parent (whether it has a paren or not).
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Interfaces.IParent.Parent">
+            <summary>
+            Gets the parent object where this object is the child in the treeview.
+            </summary>
+        </member>
+        <member name="T:FolderBrowser.Interfaces.IBrowserViewModel">
+            <summary>
+            A browser viewmodel is about managing activities and properties related
+            to displaying a treeview that repesents folders in the file system.
+            
+            This viewmodel is almost equivalent to the backend code needed to drive
+            the Treeview that shows the items in the UI.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Interfaces.IBrowserViewModel.UpdateView">
+            <summary>
+            This property determines whether the control
+            is to be updated right now or not. Switching off updates at times
+            can save performance when browsing long and deep paths with multiple
+            levels - so we:
+            1) Switch off view updates
+            2) Browse the structure to a target
+            3) Switch on updates and update view at current/new location.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Interfaces.IBrowserViewModel.IsBrowseViewEnabled">
+            <summary>
+            Gets/sets whether the associated view is currently enabled or not.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Interfaces.IBrowserViewModel.DisplayMessage">
+            <summary>
+            Gets a property to an object that is used to pop-up UI messages when errors occur.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Interfaces.IBrowserViewModel.Root">
+            <summary>
+            Gets the list of drives and folders for display in treeview structure control.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Interfaces.IBrowserViewModel.InitialPath">
+            <summary>
+            Get/set property to indicate the initial path when control
+            starts up via Loading. The control attempts to change the
+            current directory to the indicated directory if the
+            ... method is called in the Loaded event of the
+            <seealso cref="T:FolderBrowser.Views.FolderBrowserDialog"/>.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Interfaces.IBrowserViewModel.SelectedFolder">
+            <summary>
+            Get/set currently selected folder.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Interfaces.IBrowserViewModel.SpecialFolders">
+            <summary>
+            Gets a list of Special Windows Standard folders for display in view.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Interfaces.IBrowserViewModel.IsSpecialFoldersVisisble">
+            <summary>
+            Gets whether the browser view should show a special folder control or not
+            (A special folder control lets users browse to folders like 'My Documents'
+            with a mouse click).
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Interfaces.IBrowserViewModel.CancelBrowsingCommand">
+            <summary>
+            Gets a command to cancel the current browsing process.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Interfaces.IBrowserViewModel.CopyPathCommand">
+            <summary>
+            Gets a command that will copy the path of an item into the Windows Clipboard.
+            The item (path to a file) is expected as FSItemVM parameter.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Interfaces.IBrowserViewModel.CreateFolderCommand">
+            <summary>
+            Starts the create folder process by creating a new folder
+            in the given location. The location is supplied as <seealso cref="P:System.Windows.Input.ICommandSource.CommandParameter"/>
+            which is a <seealso cref="T:FolderBrowser.Interfaces.ITreeItemViewModel"/> item. So, the <seealso cref="T:FolderBrowser.Interfaces.ITreeItemViewModel"/> item
+            is the parent of the new folder and the new folder is created with a standard name:
+            'New Folder n'. The new folder n is selected and in rename mode such that users can edit
+            the name of the new folder right away.
+            
+            This command implements an event that triggers the actual rename
+            process in the connected view.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Interfaces.IBrowserViewModel.ExpandCommand">
+            <summary>
+            Gets a command that executes when a user expands a tree view item node in the treeview.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Interfaces.IBrowserViewModel.FolderSelectedCommand">
+            <summary>
+            Get/set command to select the current folder.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Interfaces.IBrowserViewModel.OpenInWindowsCommand">
+            <summary>
+            Gets a command that will open the selected item with the current default application
+            in Windows. The selected item (path to a file) is expected as FSItemVM parameter.
+            (eg: Item is HTML file -> Open in Windows starts the web browser for viewing the HTML
+            file if thats the currently associated Windows default application.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Interfaces.IBrowserViewModel.RefreshViewCommand">
+            <summary>
+            Gets a command that will reload the folder view up to the
+            selected path that is expected as <seealso cref="T:FolderBrowser.Interfaces.ITreeItemViewModel"/>
+            in the CommandParameter.
+            
+            This command is particularly useful when users create/delete a folder
+            and want to update the treeview accordingly.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Interfaces.IBrowserViewModel.RenameCommand">
+            <summary>
+            Renames the folder that is represented by this viewmodel.
+            This command should be called directly by the implementing view
+            since the new name of the folder is delivered as string.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Interfaces.IBrowserViewModel.SelectedFolderChangedCommand">
+            <summary>
+            Gets a command that executes when the selected item in the treeview has changed.
+            This updates a text property to inform other attached dependencies property controls
+            about this change in selection state.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Interfaces.IBrowserViewModel.StartRenameCommand">
+            <summary>
+            Starts the rename folder process by that renames the folder
+            that is represented by this viewmodel.
+            
+            This command implements an event that triggers the actual rename
+            process in the connected view.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Interfaces.IBrowserViewModel.BookmarkFolder">
+            <summary>
+            Expose properties to commands that work with the bookmarking of folders.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Interfaces.IBrowserViewModel.SetSpecialFoldersVisibility(System.Boolean)">
+            <summary>
+            Determines whether the list of Windows special folder shortcut
+            buttons (Music, Video etc) is visible or not.
+            </summary>
+            <param name="visible"></param>
+        </member>
+        <member name="T:FolderBrowser.Interfaces.IFolderViewModel">
+            <summary>
+            Defines the interface to a viewmodel that binds to
+            a folder item in the view. 
+            </summary>
+        </member>
+        <member name="T:FolderBrowser.Interfaces.ICustomFolderItemViewModel">
+            <summary>
+            Defines an interface to a viewmodel item that represents a
+            Special Folder (Music, Video, Desktop) in the Windows files system.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Interfaces.ICustomFolderItemViewModel.Path">
+            <summary>
+            Gets the file system path (if any) of this item.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Interfaces.ICustomFolderItemViewModel.SpecialFolder">
+            <summary>
+            Gets the Special Folder enumeration of this item.
+            </summary>
+        </member>
+        <member name="T:FolderBrowser.Themes.ResourceKeys">
+            <summary>
+            Defines the resource key that are available for styling, colors, and brushes
+            in this application.
+            </summary>
+        </member>
+        <member name="F:FolderBrowser.Themes.ResourceKeys.DropDownBackgroundKey">
+            <summary>
+            Resource key of the folder browser drop down normal background brush key.
+            </summary>
+        </member>
+        <member name="F:FolderBrowser.Themes.ResourceKeys.DialogBackgroundKey">
+            <summary>
+            Resource key of the folder browser dialogs normal background brush key.
+            </summary>
+        </member>
+        <member name="F:FolderBrowser.Themes.ResourceKeys.TreeViewBackgroundKey">
+            <summary>
+            Resource key of the treeview normal background brush key.
+            </summary>
+        </member>
+        <member name="F:FolderBrowser.Themes.ResourceKeys.DialogForegroundKey">
+            <summary>
+            Resource key of the folder browser dialogs normal foreground brush key.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.DriveViewModel.#ctor(FileSystemModels.Interfaces.IPathModel,FolderBrowser.Interfaces.ITreeItemViewModel)">
+            <summary>
+            Constructs a drive's viewmodel.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.DriveViewModel.ChildrenLoad">
+            <summary>
+            Load all sub-folders into the Folders collection.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.DriveViewModel.CreateNewDirectory">
+            <summary>
+            Create a new folder with a standard name
+            'New folder n' underneath this folder.
+            </summary>
+            <returns>a viewmodel of the newly created directory or null</returns>
+        </member>
+        <member name="T:FolderBrowser.ViewModels.EditFolderBookmarks">
+            <summary>
+            Class implements properties and methods required to message folder
+            bookmark events to a related class which is responsible for viewing
+            bookmarks (for example in a drop down button).
+            </summary>
+        </member>
+        <member name="E:FolderBrowser.ViewModels.EditFolderBookmarks.RequestEditBookmarkedFolders">
+            <summary>
+            Generate an event to remove or add a recent folder to a collection.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.EditFolderBookmarks.RecentFolderCommandCanExecute">
+            <summary>
+            Determine whether an Add/Remove command can execute or not.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.EditFolderBookmarks.RecentFolderRemoveCommand">
+            <summary>
+            Gets a command that removes folder location via a corresponding event.
+            Expected parameter is an intherited type from <see cref="T:FolderBrowser.Interfaces.ITreeItemViewModel"/>.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.EditFolderBookmarks.RecentFolderAddCommand">
+            <summary>
+            Gets a command that adds folder location via a corresponding event.
+            Expected parameter is an intherited type from <see cref="T:FolderBrowser.Interfaces.ITreeItemViewModel"/>.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.EditFolderBookmarks.RecentFolderCommand_CanExecute(System.Object)">
+            <summary>
+            Determines whether the add/remove bookmark command can execute.
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.EditFolderBookmarks.EditRecentFolder_Executed(FolderBrowser.Interfaces.ITreeItemViewModel,FileSystemModels.Events.EditBookmarkEvent.RecentFolderAction)">
+            <summary>
+            Adds or removes the <paramref name="item"/> from the bookmarks collection
+            at thr receivers (subscriber) end of the event chain.
+            
+            <see cref="E:FolderBrowser.ViewModels.EditFolderBookmarks.RequestEditBookmarkedFolders"/> event.
+            </summary>
+            <param name="item"></param>
+            <param name="action"></param>
+        </member>
+        <member name="T:FolderBrowser.ViewModels.SortableObservableCollection`1">
+            <summary>
+            Source: https://stackoverflow.com/questions/5487927/expand-wpf-treeview-to-support-sorting
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.SortableObservableCollection`1.#ctor">
+            <summary>
+            Class constructor.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.SortableObservableCollection`1.#ctor(System.Collections.Generic.List{`0})">
+            <summary>
+            Class constructor.
+            </summary>
+            <param name="l"></param>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.SortableObservableCollection`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Class constructor.
+            </summary>
+            <param name="l"></param>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.SortableObservableCollection`1.Sort``1(System.Func{`0,``0})">
+            <summary>
+            Sorts the items of the collection in ascending order according to a key.
+            </summary>
+            <typeparam name="TKey">The type of the key returned by <paramref name="keySelector"/>.</typeparam>
+            <param name="keySelector">A function to extract a key from an item.</param>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.SortableObservableCollection`1.SortDescending``1(System.Func{`0,``0})">
+            <summary>
+            Sorts the items of the collection in descending order according to a key.
+            </summary>
+            <typeparam name="TKey">The type of the key returned by <paramref name="keySelector"/>.</typeparam>
+            <param name="keySelector">A function to extract a key from an item.</param>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.SortableObservableCollection`1.Sort``1(System.Func{`0,``0},System.Collections.Generic.IComparer{``0})">
+            <summary>
+            Sorts the items of the collection in ascending order according to a key.
+            </summary>
+            <typeparam name="TKey">The type of the key returned by <paramref name="keySelector"/>.</typeparam>
+            <param name="keySelector">A function to extract a key from an item.</param>
+            <param name="comparer">An <see cref="T:System.Collections.Generic.IComparer`1"/> to compare keys.</param>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.SortableObservableCollection`1.InternalSort(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            Moves the items of the collection so that their orders are the same as those of the items provided.
+            </summary>
+            <param name="sortedItems">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> to provide item orders.</param>
+        </member>
+        <member name="T:FolderBrowser.ViewModels.TreeItemViewModel">
+            <summary>
+            Implement the base viewmodel for one entry for a collection of items
+            (drives, folders, files etc...).
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.TreeItemViewModel.#ctor(FileSystemModels.Interfaces.IPathModel,FolderBrowser.Interfaces.ITreeItemViewModel)">
+            <summary>
+            Construct an item viewmodel from a path.
+            </summary>
+            <param name="model"></param>
+            <param name="parent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.TreeItemViewModel.#ctor">
+            <summary>
+            Standard <seealso cref="T:FolderBrowser.ViewModels.TreeItemViewModel"/> constructor
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.TreeItemViewModel.ItemName">
+            <summary>
+            Gets the name of this folder (without its root path component).
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.TreeItemViewModel.ItemPath">
+            <summary>
+            Get/set file system Path for this folder.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.TreeItemViewModel.Parent">
+            <summary>
+            Gets the parent object where this object is the child in the treeview.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.TreeItemViewModel.ItemDisplayString">
+            <summary>
+            Gets a folder item string for display purposes.
+            This string can evaluete to 'C:\ (Windows)' for drives,
+            if the 'C:\' drive was named 'Windows'.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.TreeItemViewModel.Folders">
+            <summary>
+            Get/set observable collection of sub-folders of this folder.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.TreeItemViewModel.IsSelected">
+            <summary>
+            Get/set whether this folder is currently selected or not.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.TreeItemViewModel.IsExpanded">
+            <summary>
+            Get/set whether this folder is currently expanded or not.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.TreeItemViewModel.ItemType">
+            <summary>
+            Gets the type of this item (eg: Folder, HardDisk etc...).
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.TreeItemViewModel.HasDummyChild">
+            <summary>
+            Determine whether child is a dummy (must be evaluated and replaced
+            with real data) or not.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.TreeItemViewModel.ChildAdd(FolderBrowser.Interfaces.ITreeItemViewModel)">
+            <summary>
+            Adds the folder item into the collection of sub-folders of this folder.
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.TreeItemViewModel.ChildRename(System.String,System.String)">
+            <summary>
+            Renames a child below this item.
+            </summary>
+            <param name="oldName"></param>
+            <param name="newName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.TreeItemViewModel.Rename(System.String)">
+            <summary>
+            Rename the name of the folder into a new name.
+            </summary>
+            <param name="newFolderName"></param>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.TreeItemViewModel.ChildTryGet(System.String)">
+            <summary>
+            Attempts to find an item with the given name in the list of child items
+            below this item and returns it or null.
+            </summary>
+            <param name="folderName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.TreeItemViewModel.ConstructDriveFolderViewModel(System.String)">
+            <summary>
+            Construct a <seealso cref="T:FolderBrowser.ViewModels.FolderViewModel"/> item that represents a Windows
+            file system drive object (eg.: 'C:\').
+            </summary>
+            <param name="driveLetter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.TreeItemViewModel.ChildrenLoad">
+            <summary>
+            Load all sub-folders into the Folders collection.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.TreeItemViewModel.CreateNewDirectory">
+            <summary>
+            Create a new folder with a standard name
+            'New folder n' underneath this folder.
+            </summary>
+            <returns>a viewmodel of the newly created directory or null</returns>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.TreeItemViewModel.ChildrenClear">
+            <summary>
+            Remove all sub-folders from a given folder.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.TreeItemViewModel.ResetModel(FileSystemModels.Interfaces.IPathModel)">
+            <summary>
+            Method executes when item is renamed
+            -> model name is required to be renamed and dependend
+            properties are updated.
+            </summary>
+            <param name="model"></param>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.TreeItemViewModel.ShowNotification(System.String,System.String,System.Windows.Media.Imaging.BitmapImage)">
+            <summary>
+            Shows a pop-notification message with the given title and text.
+            </summary>
+            <param name="title"></param>
+            <param name="message"></param>
+            <param name="imageIcon"></param>
+            <returns>true if the event was succesfully fired.</returns>
+        </member>
+        <member name="T:FolderBrowser.ViewModels.BrowserViewModel">
+            <summary>
+            A browser viewmodel is about managing activities and properties related
+            to displaying a treeview that repesents folders in the file system.
+            
+            This viewmodel is almost equivalent to the backend code needed to drive
+            the Treeview that shows the items in the UI.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.BrowserViewModel.#ctor">
+            <summary>
+            Standard class constructor
+            </summary>
+        </member>
+        <member name="E:FolderBrowser.ViewModels.BrowserViewModel.BrowseEvent">
+            <summary>
+            Indicates when the viewmodel starts heading off somewhere else
+            and when its done browsing to a new location.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.BrowserViewModel.UpdateView">
+            <summary>
+            This property determines whether the control
+            is to be updated right now or not. Switching off updates at times
+            can save performance when browsing long and deep paths with multiple
+            levels - so we:
+            1) Switch off view updates
+            2) Browse the structure to a target
+            3) Switch on updates and update view at current/new location.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.BrowserViewModel.IsBrowseViewEnabled">
+            <summary>
+            Gets/sets whether the associated view is currently enabled or not.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.BrowserViewModel.IsBrowsing">
+            <summary>
+            Gets whether the tree browser is currently processing
+            a request for brwosing to a known location.
+            
+            Can only be set by the control if user started browser process
+            
+            Use IsBrowsing and IsExternallyBrowsing to lock the controls UI
+            during browse operations or display appropriate progress bar(s).
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.BrowserViewModel.IsExternallyBrowsing">
+            <summary>
+            This should only be set by the controller that started the browser process.
+            
+            Use IsBrowsing and IsExternallyBrowsing to lock the controls UI
+            during browse operations or display appropriate progress bar(s).
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.BrowserViewModel.Root">
+            <summary>
+            Gets the list of drives and folders for display in treeview structure control.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.BrowserViewModel.SelectedFolder">
+            <summary>
+            Get/set currently selected folder.
+            
+            This property is used as output of the current path
+            but also used as a parameter when browsing to a new path.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.BrowserViewModel.SelectedItem">
+            <summary>
+            Gets the currently selected viewmodel object (if any).
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.BrowserViewModel.CancelBrowsingCommand">
+            <summary>
+            Gets a command to cancel the current browsing process.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.BrowserViewModel.OpenInWindowsCommand">
+            <summary>
+            Gets a command that will open the selected item with the current default application
+            in Windows. The selected item (path to a file) is expected as FSItemVM parameter.
+            (eg: Item is HTML file -> Open in Windows starts the web browser for viewing the HTML
+            file if thats the currently associated Windows default application.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.BrowserViewModel.CopyPathCommand">
+            <summary>
+            Gets a command that will copy the path of an item into the Windows Clipboard.
+            The item (path to a file) is expected as FSItemVM parameter.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.BrowserViewModel.SelectedFolderChangedCommand">
+            <summary>
+            Gets a command that executes when the selected item in the treeview has changed.
+            This updates a text property to inform other attached dependencies property controls
+            about this change in selection state.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.BrowserViewModel.ExpandCommand">
+            <summary>
+            Gets a command that executes when a user expands a tree view item node in the treeview.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.BrowserViewModel.StartRenameCommand">
+            <summary>
+            Starts the rename folder process on the CommandParameter
+            which must be FolderViewModel item that represented the to be renamed folder.
+            
+            This command implements an event that triggers the actual rename
+            process in the connected view.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.BrowserViewModel.RenameCommand">
+            <summary>
+            Renames the folder that is represented by this viewmodel.
+            This command should be called directly by the implementing view
+            since the new name of the folder is delivered in the
+            CommandParameter as a string.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.BrowserViewModel.CreateFolderCommand">
+            <summary>
+            Starts the create folder process by creating a new folder
+            in the given location. The location is supplied as <seealso cref="P:System.Windows.Input.ICommandSource.CommandParameter"/>
+            which is a <seealso cref="T:FolderBrowser.Interfaces.ITreeItemViewModel"/> item.
+            
+            So, the <seealso cref="T:FolderBrowser.Interfaces.ITreeItemViewModel"/> item is the parent of the new folder
+            <seealso cref="T:FolderBrowser.Interfaces.IFolderViewModel"/> and the new folder is created with a standard
+            name: 'New Folder n'. The new folder n is selected and in rename mode such that
+            users can edit the name of the new folder right away.
+            
+            This command implements an event that triggers the actual rename process in the
+            connected view.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.BrowserViewModel.FolderSelectedCommand">
+            <summary>
+            Gets command to select the current folder.
+            
+            This binding can be used for browsing to a certain folder
+            e.g. Users Document folder.
+            
+            Expected parameter: string containing a path to be browsed to.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.BrowserViewModel.RefreshViewCommand">
+            <summary>
+            Gets a command that will reload the folder view up to the
+            selected path that is expected as <seealso cref="T:FolderBrowser.Interfaces.ITreeItemViewModel"/>
+            in the CommandParameter.
+            
+            This command is particularly useful when users create/delete a folder
+            and want to update the treeview accordingly.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.BrowserViewModel.ExpandDummyFolderAsync(FolderBrowser.Interfaces.ITreeItemViewModel)">
+            <summary>
+            Expand folder for the very first time (using the process background viewmodel).
+            </summary>
+            <param name="expandedItem"></param>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.BrowserViewModel.ExpandProcessinishedEvent(System.Boolean,System.Exception,System.String)">
+            <summary>
+            Methid executes when expand method is finished processing.
+            </summary>
+            <param name="processWasSuccessful"></param>
+            <param name="exp"></param>
+            <param name="caption"></param>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.BrowserViewModel.RequeryChildItems(FolderBrowser.ViewModels.TreeItemViewModel)">
+            <summary>
+            Requery all child items - this can be useful when we
+            expand a folder for the very first time. Here we use task library with
+            async to enable synchronization. This is for parts of other commands
+            such as New Folder command which requires expansion of sub-folder
+            items before actual New Folder command can execute.
+            </summary>
+            <param name="expandedItem"></param>
+            <returns></returns>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.BrowserViewModel.DisplayMessage">
+            <summary>
+            Gets a property to an object that is used to pop-up UI messages when errors occur.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.BrowserViewModel.BookmarkFolder">
+            <summary>
+            Expose properties to commands that work with the bookmarking of folders.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.BrowserViewModel.SpecialFolders">
+            <summary>
+            Gets a list of Special Windows Standard folders for display in view.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.BrowserViewModel.IsSpecialFoldersVisisble">
+            <summary>
+            Gets whether the browser view should show a special folder control or not
+            (A special folder control lets users browse to folders like 'My Documents'
+            with a mouse click).
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.BrowserViewModel.InitialPath">
+            <summary>
+            Get/set property to indicate the initial path when control
+            starts up via Loading. The control attempts to change the
+            current directory to the indicated directory if the
+            ... method is called in the Loaded event of the
+            <seealso cref="T:FolderBrowser.Views.FolderBrowserDialog"/>.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.BrowserViewModel.FileSystemModels#Browse#INavigateable#NavigateTo(FileSystemModels.Browse.BrowseRequest)">
+            <summary>
+            Controller can start browser process if IsBrowsing = false
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.BrowserViewModel.FileSystemModels#Browse#INavigateable#NavigateToAsync(FileSystemModels.Browse.BrowseRequest)">
+            <summary>
+            Controller can start browser process if IsBrowsing = false
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.BrowserViewModel.SetExternalBrowsingState(System.Boolean)">
+            <summary>
+            Sets the IsExternalBrowsing state and cleans up any running processings
+            if any. This method should only be called by an external controll instance.
+            </summary>
+            <param name="isBrowsing"></param>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.BrowserViewModel.SetSpecialFoldersVisibility(System.Boolean)">
+            <summary>
+            Determines whether the list of Windows special folder shortcut
+            buttons (Music, Video etc) is visible or not.
+            </summary>
+            <param name="visible"></param>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.BrowserViewModel.InternalNavigateTo(FileSystemModels.Browse.BrowseRequest,System.Boolean)">
+            <summary>
+            Start browser process initiated by controller or control specific
+            events (e.g.: Expand path on initial load...)
+            </summary>
+            <param name="request"></param>
+            <param name="ResetBrowserStatus"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.BrowserViewModel.InternalBrowsePath(FileSystemModels.Browse.BrowseRequest,System.Boolean)">
+            <summary>
+            Internal method for browsing the control along a given path.
+            </summary>
+            <param name="request"></param>
+            <param name="ResetBrowserStatus"></param>
+            <returns>Whether path exists and was successfully browsed or not.</returns>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.BrowserViewModel.SelectDirectory(FileSystemModels.Interfaces.IPathModel,System.Threading.CancellationToken)">
+            <summary>
+            Transforms a path model into an array of normalized viewmodel items
+            Drive 'C:\' , 'Folder', 'SubFolder', etc...
+            and returns these items, or null, if path cannot be split (path is invalid, does not exist etc).
+            </summary>
+            <param name="inputPath">Path to split into viewmodel items</param>
+            <param name="ct">This token can be used to cancel the process if the
+            token was supplied and the method has been called in a Task context.</param>
+            <returns>An array of viewmodel items or null.</returns>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.BrowserViewModel.SetInitialDrives(System.Threading.CancellationToken)">
+            <summary>
+            Initialize the treeview with a set of local drives
+            currently available on the computer.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.BrowserViewModel.NavigatePath(FolderBrowser.Interfaces.ITreeItemViewModel,System.String[])">
+            <summary>
+            Transforms an array of strings into an array of viewmodel items
+            Drive 'C:\' , 'Folder', 'SubFolder', etc...
+            and returns these items, or null, if path verified (path is invalid, does not exist etc).
+            </summary>
+            <param name="parent">The parent item under which all other parent items
+            are to be displayed. Caller must ensure that parent item exists and is visible
+            in the current structure, before calling this method.</param>
+            <param name="folders">array of strings indicating folder parts to return
+            viewmodel items for.</param>
+            <returns>An array of viewmodel items or null.</returns>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.BrowserViewModel.CreateFolderCommandNewFolder(FolderBrowser.ViewModels.TreeItemViewModel)">
+            <summary>
+            Create a new folder underneath the given parent folder. This method creates
+            the folder with a standard name (eg 'New folder n') on disk and selects it
+            in editing mode to give users a chance for renaming it right away.
+            </summary>
+            <param name="parentFolder"></param>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.BrowserViewModel.ClearBrowserStates">
+            <summary>
+            Clear states of browser control (hide error message and other things that may not apply now)
+            </summary>
+        </member>
+        <member name="T:FolderBrowser.ViewModels.CustomFolderItemViewModel">
+            <summary>
+            Wrapper class for <seealso cref="T:System.Environment.SpecialFolder"/> items.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.CustomFolderItemViewModel.#ctor(System.Environment.SpecialFolder)">
+            <summary>
+            Class constructor
+            </summary>
+            <param name="specialFolder"></param>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.CustomFolderItemViewModel.#ctor">
+            <summary>
+            Protected standard class constructor
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.CustomFolderItemViewModel.Path">
+            <summary>
+            Gets the file system path of this custom folder item.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.CustomFolderItemViewModel.SpecialFolder">
+            <summary>
+            Gets the <seealso cref="T:System.Environment.SpecialFolder"/> enumeration member
+            associated with this class.
+            </summary>
+        </member>
+        <member name="T:FolderBrowser.ViewModels.FolderViewModel">
+            <summary>
+            Implment the viewmodel for one folder entry for a collection of folders.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.FolderViewModel.#ctor(FileSystemModels.Interfaces.IPathModel,FolderBrowser.Interfaces.ITreeItemViewModel)">
+            <summary>
+            Construct a folder viewmodel item from a path.
+            </summary>
+            <param name="model"></param>
+            <param name="parent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.FolderViewModel.#ctor(System.String,FolderBrowser.Interfaces.ITreeItemViewModel)">
+            <summary>
+            Construct a <seealso cref="T:FolderBrowser.ViewModels.FolderViewModel"/> item that represents a Windows
+            file system folder object (eg.: FolderPath = 'C:\Temp\', FolderName = 'Temp').
+            </summary>
+            <param name="dir"></param>
+            <param name="parent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.FolderViewModel.#ctor">
+            <summary>
+            Standard <seealso cref="T:FolderBrowser.ViewModels.FolderViewModel"/> constructor
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.FolderViewModel.ChildrenLoad">
+            <summary>
+            Load all sub-folders into this Folders collection.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.FolderViewModel.LoadFolders(FolderBrowser.Interfaces.ITreeItemViewModel)">
+            <summary>
+            Load all sub-folders into the Folders collection of the
+            given <paramref name="parentItem"/>.
+            </summary>
+            <param name="parentItem"></param>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.FolderViewModel.AddFolder(System.String,FolderBrowser.Interfaces.ITreeItemViewModel)">
+            <summary>
+            Add a new folder indicated by <paramref name="dir"/> as path
+            into the sub-folder viewmodel collection of this folder item.
+            </summary>
+            <param name="dir"></param>
+            <param name="parentItem"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.FolderViewModel.CreateNewDirectory">
+            <summary>
+            Create a new folder with a standard name
+            'New folder n' underneath this folder.
+            </summary>
+            <returns>a viewmodel of the newly created directory or null</returns>
+        </member>
+        <member name="T:FolderBrowser.ViewModels.Messages.DisplayMessageViewModel">
+            <summary>
+            Class keeps track of a message display that can pop-up messages
+            and disappear depending on whether the IsErrorMessageAvailable
+            property is true or not.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.Messages.DisplayMessageViewModel.IsErrorMessageAvailable">
+            <summary>
+            Decide whether a message is available for display or not.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.Messages.DisplayMessageViewModel.Message">
+            <summary>
+            Gets/sets the message for display.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.Messages.DisplayMessageViewModel.SetMessage(System.String)">
+            <summary>
+            Resets the current message with the given string.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:FolderBrowser.ViewModels.Messages.IDisplayMessageViewModel">
+            <summary>
+            Defines an interface for a viewmodel class that can be
+            used to pop-up messages in a UI (without using messageboxes).
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.Messages.IDisplayMessageViewModel.IsErrorMessageAvailable">
+            <summary>
+            Gets/sets whether an error message is currently available.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.ViewModels.Messages.IDisplayMessageViewModel.Message">
+            <summary>
+            Gets/sets the massage.
+            </summary>
+        </member>
+        <member name="T:FolderBrowser.ViewModels.Messages.ISetMessageDisplay">
+            <summary>
+            Defines an interface that allows a client to set a message for display.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.ViewModels.Messages.ISetMessageDisplay.SetMessage(System.String)">
+            <summary>
+            Sets the message to be displayed.
+            </summary>
+            <param name="Message"></param>
+        </member>
+        <member name="T:FolderBrowser.Views.Behaviours.TreeViewVirtualItemBehaviour">
+            <summary>
+            Class implements an attached behaviour to bring a selected TreeViewItem in VIRTUALIZED TreeView
+            into view when selection is driven by the viewmodel (not the user). The System.Windows.Interactivity
+            library is required for this behavior to compile.
+            
+            Sample Usage:
+            &lt;i:Interaction.Behaviors>
+                &lt;behav:BringVirtualTreeViewItemIntoViewBehavior SelectedItem = "{Binding SelectPathItem}" />
+            &lt;/ i:Interaction.Behaviors>
+            
+            This behaviour requires a binding to a path like structure of tree view (viewmodel) items.
+            This implementation requieres an array of objects (object[] SelectedItem) that represents
+            each tree view item along the path that should be browsed with this behaviour.
+            
+            The <see cref="M:FolderBrowser.Views.Behaviours.TreeViewVirtualItemBehaviour.OnSelectedItemChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)"/> method executes when the bound property has changed.
+            The behavior browses then along the given path and ensures that all requested items exist
+            even if we are using a virtual tree.
+            
+            Allows two-way binding of a TreeView's selected item.
+            Sources:
+            http://stackoverflow.com/q/183636/46635
+            http://code.msdn.microsoft.com/Changing-selection-in-a-6a6242c8/sourcecode?fileId=18862&amp;pathId=753647475
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Views.Behaviours.TreeViewVirtualItemBehaviour.GetSelectedItem(System.Windows.DependencyObject)">
+            <summary>
+            Implements the get method for a dependency property.
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.Views.Behaviours.TreeViewVirtualItemBehaviour.SetSelectedItem(System.Windows.DependencyObject,FolderBrowser.Interfaces.IParent)">
+            <summary>
+            Implements the set method for a dependency property.
+            </summary>
+            <param name="obj"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:FolderBrowser.Views.Behaviours.TreeViewVirtualItemBehaviour.OnSelectedItemChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            This method is invoked when the value bound at the dependency
+            property <see cref="F:FolderBrowser.Views.Behaviours.TreeViewVirtualItemBehaviour.SelectedItemProperty"/> has changed.
+            </summary>
+            <param name="d"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:FolderBrowser.Views.Behaviours.DialogCloser">
+            <summary>
+            Implements an attached behaviour that can be used to signal the window close
+            event from the window (view) to the viewmodel.
+            </summary>
+        </member>
+        <member name="F:FolderBrowser.Views.Behaviours.DialogCloser.DialogResultProperty">
+            <summary>
+            Dependency property for attached behaviour in NON-dialog windows.
+            This can be is used to close a NON-dialog window via ViewModel.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Views.Behaviours.DialogCloser.SetDialogResult(System.Windows.Window,System.Nullable{System.Boolean})">
+            <summary>
+            Setter of corresponding dependency property
+            </summary>
+            <param name="target"></param>
+            <param name="value"></param>
+        </member>
+        <member name="T:FolderBrowser.Views.Behaviours.SelectTextOnFocus">
+            <summary>
+            Implements an attached behavior that selects all the text in a textbox upon gain of focus.
+            
+            Source: http://stackoverflow.com/questions/660554/how-to-automatically-select-all-text-on-focus-in-wpf-textbox
+            </summary>
+        </member>
+        <member name="F:FolderBrowser.Views.Behaviours.SelectTextOnFocus.ActiveProperty">
+            <summary>
+            Implements an attached property that can be attached to a textbox control.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Views.Behaviours.SelectTextOnFocus.GetActive(System.Windows.DependencyObject)">
+            <summary>
+            Implements the getter an attached property vakue that can be attached to a textbox control.
+            </summary>
+            <param name="object"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.Views.Behaviours.SelectTextOnFocus.SetActive(System.Windows.DependencyObject,System.Boolean)">
+            <summary>
+            Implements the setter an attached property vakue that can be attached to a textbox control.
+            </summary>
+            <param name="object"></param>
+            <param name="value"></param>
+        </member>
+        <member name="T:FolderBrowser.Views.Behaviours.TextChangedCommand">
+            <summary>
+            Source:
+            http://stackoverflow.com/questions/1034374/drag-and-drop-in-mvvm-with-scatterview
+            http://social.msdn.microsoft.com/Forums/de-DE/wpf/thread/21bed380-c485-44fb-8741-f9245524d0ae
+            
+            Attached behaviour to implement the drop event via delegate command binding or routed commands.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Views.Behaviours.TextChangedCommand.SetChangedCommand(System.Windows.DependencyObject,System.Windows.Input.ICommand)">
+            <summary>
+            Setter method of the attached DropCommand <seealso cref="T:System.Windows.Input.ICommand"/> property
+            </summary>
+            <param name="source"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:FolderBrowser.Views.Behaviours.TextChangedCommand.GetChangedCommand(System.Windows.DependencyObject)">
+            <summary>
+            Getter method of the attached DropCommand <seealso cref="T:System.Windows.Input.ICommand"/> property
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.Views.Behaviours.TextChangedCommand.OnTextChangedCommandChange(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            This method is hooked in the definition of the <seealso cref="F:FolderBrowser.Views.Behaviours.TextChangedCommand.ChangedCommandProperty"/>.
+            It is called whenever the attached property changes - in our case the event of binding
+            and unbinding the property to a sink is what we are looking for.
+            </summary>
+            <param name="d"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:FolderBrowser.Views.Behaviours.TextChangedCommand.OnText_Changed(System.Object,System.Windows.Controls.TextChangedEventArgs)">
+            <summary>
+            This method is called when the TextChanged event occurs. The sender should be the control
+            on which this behaviour is attached - so we convert the sender into a <seealso cref="T:System.Windows.Controls.TextBox"/>
+            and receive the Command through the GetDropCommand getter listed above.
+            
+            The <paramref name="e"/> parameter contains the standard <seealso cref="T:System.Windows.DragEventArgs"/> data,
+            which is unpacked and realesed upon the bound command.
+            
+            This implementation supports binding of delegate commands and routed commands.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:FolderBrowser.Views.Behaviours.TextEnterCommand">
+            <summary>
+            Attached behaviour to implement the drop event via delegate command binding or routed commands.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Views.Behaviours.TextEnterCommand.SetCommand(System.Windows.DependencyObject,System.Windows.Input.ICommand)">
+            <summary>
+            Setter method of the attached DropCommand <seealso cref="T:System.Windows.Input.ICommand"/> property
+            </summary>
+            <param name="source"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:FolderBrowser.Views.Behaviours.TextEnterCommand.GetCommand(System.Windows.DependencyObject)">
+            <summary>
+            Getter method of the attached DropCommand <seealso cref="T:System.Windows.Input.ICommand"/> property
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.Views.Behaviours.TextEnterCommand.OnTextEnterCommandChange(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            This method is hooked in the definition of the <see cref="T:FolderBrowser.Views.Behaviours.TextChangedCommand"/>.
+            It is called whenever the attached property changes - in our case the event of binding
+            and unbinding the property to a sink is what we are looking for.
+            </summary>
+            <param name="d"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:FolderBrowser.Views.Behaviours.TextEnterCommand.uiElement_KeyUp(System.Object,System.Windows.Input.KeyEventArgs)">
+            <summary>
+            This method is called when the KeyUp event occurs. The sender should be the control
+            on which this behaviour is attached - so we convert the sender into a <seealso cref="T:System.Windows.Controls.TextBox"/>
+            and receive the Command through the Command getter listed above.
+            
+            This implementation supports binding of delegate commands and routed commands.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:FolderBrowser.Views.Behaviours.TreeViewItemExpanded">
+            <summary>
+            Class implements an attached behaviour to bring a selected TreeViewItem
+            into view when selection is driven by the viewmodel (not the user).
+            </summary>
+        </member>
+        <member name="F:FolderBrowser.Views.Behaviours.TreeViewItemExpanded.CommandProperty">
+            <summary>
+            Implements a command dependency property that can be used to invoke
+            a bound command when the associated event in the control is raised.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Views.Behaviours.TreeViewItemExpanded.GetCommand(System.Windows.DependencyObject)">
+            <summary>
+            Implements a command property gettter that can be used to invoke
+            a bound command when the associated event in the control is raised.
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.Views.Behaviours.TreeViewItemExpanded.SetCommand(System.Windows.DependencyObject,System.Windows.Input.ICommand)">
+            <summary>
+            Implements a command property settter that can be used to invoke
+            a bound command when the associated event in the control is raised.
+            </summary>
+            <param name="obj"></param>
+            <param name="value"></param>
+        </member>
+        <member name="T:FolderBrowser.Views.Behaviours.TreeViewSelectionChangedBehavior">
+            <summary>
+            Source:
+            http://stackoverflow.com/questions/1034374/drag-and-drop-in-mvvm-with-scatterview
+            http://social.msdn.microsoft.com/Forums/de-DE/wpf/thread/21bed380-c485-44fb-8741-f9245524d0ae
+            
+            Attached behaviour to implement the SelectionChanged command/event via delegate command binding or routed commands.
+            </summary>
+        </member>
+        <member name="F:FolderBrowser.Views.Behaviours.TreeViewSelectionChangedBehavior.ChangedCommandProperty">
+            <summary>
+            Field of attached ICommand property
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Views.Behaviours.TreeViewSelectionChangedBehavior.SetChangedCommand(System.Windows.DependencyObject,System.Windows.Input.ICommand)">
+            <summary>
+            Setter method of the attached ChangedCommand <seealso cref="T:System.Windows.Input.ICommand"/> property
+            </summary>
+            <param name="source"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:FolderBrowser.Views.Behaviours.TreeViewSelectionChangedBehavior.GetChangedCommand(System.Windows.DependencyObject)">
+            <summary>
+            Getter method of the attached ChangedCommand <seealso cref="T:System.Windows.Input.ICommand"/> property
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.Views.Behaviours.TreeViewSelectionChangedBehavior.SetIsProcessing(System.Windows.DependencyObject,System.Boolean)">
+            <summary>
+            Setter method of the attached <seealso cref="T:System.Boolean"/> IsProcessing property
+            
+            This property provides an additional throtelling which is applied when the
+            bound property is set to true.
+            </summary>
+            <param name="source"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.Views.Behaviours.TreeViewSelectionChangedBehavior.GetIsProcessing(System.Windows.DependencyObject)">
+            <summary>
+            Getter method of the attached <seealso cref="T:System.Boolean"/> IsProcessing property
+            
+            This property provides an additional throtelling which is applied when the
+            bound property is set to true.
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.Views.Behaviours.TreeViewSelectionChangedBehavior.OnSelectionChangedCommandChange(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            This method is hooked in the definition of the <seealso cref="F:FolderBrowser.Views.Behaviours.TreeViewSelectionChangedBehavior.ChangedCommandProperty"/>.
+            It is called whenever the attached property changes - in our case the event of binding
+            and unbinding the property to a sink is what we are looking for.
+            </summary>
+            <param name="d"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:FolderBrowser.Views.Behaviours.TreeViewSelectionChangedBehavior.Selection_Changed(System.Object,System.Windows.RoutedPropertyChangedEventArgs{System.Object})">
+            <summary>
+            This method is called when the selection changed event occurs. The sender should be the control
+            on which this behaviour is attached - so we convert the sender into a <seealso cref="T:System.Windows.UIElement"/>
+            and receive the Command through the <seealso cref="M:FolderBrowser.Views.Behaviours.TreeViewSelectionChangedBehavior.GetChangedCommand(System.Windows.DependencyObject)"/> getter listed above.
+            
+            The <paramref name="e"/> parameter contains the standard EventArgs data,
+            which is unpacked and reales upon the bound command.
+            
+            This implementation supports binding of delegate commands and routed commands.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:FolderBrowser.Views.BindingProxy">
+            <summary>
+            Implements an XAML proxy which can be used to bind items (TreeViewItem, ListViewItem etc)
+            with a viewmodel that manages the collecrions.
+            
+            Source: http://www.thomaslevesque.com/2011/03/21/wpf-how-to-bind-to-data-when-the-datacontext-is-not-inherited/
+             Issue: http://stackoverflow.com/questions/9994241/mvvm-binding-command-to-contextmenu-item
+            </summary>
+        </member>
+        <member name="F:FolderBrowser.Views.BindingProxy.DataProperty">
+             <summary>
+             Backing storage of the Data dependency property.
+            
+             Gets/sets the data object this class is forwarding to everyone
+             who has a reference to this object.
+             </summary>
+        </member>
+        <member name="P:FolderBrowser.Views.BindingProxy.Data">
+            <summary>
+            Gets/sets the data object this class is forwarding to everyone
+            who has a reference to this object.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Views.BindingProxy.CreateInstanceCore">
+            <summary>
+            Overrides of Freezable
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FolderBrowser.Views.BookmarkFolderDropDown">
+            <summary>
+            Interaction logic for BookmarkFolderDropDown.xaml
+            </summary>
+            <summary>
+            BookmarkFolderDropDown
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Views.BookmarkFolderDropDown.#ctor">
+            <summary>
+            Class constructor.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Views.BookmarkFolderDropDown.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:FolderBrowser.Views.BrowseDirectoriesView">
+            <summary>
+            Interaction logic for BrowseDirectoriesView.xaml
+            </summary>
+            <summary>
+            BrowseDirectoriesView
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Views.BrowseDirectoriesView.#ctor">
+            <summary>
+            Class constructor
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Views.BrowseDirectoriesView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:FolderBrowser.Views.DropDownView">
+            <summary>
+            Interaction logic for DropDownView.xaml
+            </summary>
+            <summary>
+            DropDownView
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Views.DropDownView.#ctor">
+            <summary>
+            Class constructor.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Views.DropDownView.ResizeGripThumb_DragDelta(System.Object,System.Windows.Controls.Primitives.DragDeltaEventArgs)">
+            <summary>
+            Make the drop down element resizeable.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:FolderBrowser.Views.DropDownView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:FolderBrowser.Views.FolderBrowserDialog">
+            <summary>
+            Interaction logic for FolderBrowserDialog.xaml
+            </summary>
+            <summary>
+            FolderBrowserDialog
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Views.FolderBrowserDialog.#ctor">
+            <summary>
+            Standard <seealso cref="T:FolderBrowser.Views.FolderBrowserDialog"/> constructor
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Views.FolderBrowserDialog.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:FolderBrowser.Views.FolderBrowserDialogView">
+            <summary>
+            Interaction logic for FolderBrowserDialogView.xaml
+            </summary>
+            <summary>
+            FolderBrowserDialogView
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Views.FolderBrowserDialogView.#ctor">
+            <summary>
+            Class constructor
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Views.FolderBrowserDialogView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:FolderBrowser.Views.FolderBrowserTreeView">
+            <summary>
+            Interaction logic for FolderBrowserTreeView.xaml
+            </summary>
+            <summary>
+            FolderBrowserTreeView
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Views.FolderBrowserTreeView.#ctor">
+            <summary>
+            Standard class constructor
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Views.FolderBrowserTreeView.FolderBrowserTreeView_Loaded(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Initializes the folder browser viewmodel and view as soon as the view is loaded.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:FolderBrowser.Views.FolderBrowserTreeView.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:FolderBrowser.Views.SpecialFolderMarkUpExtension">
+            <summary>
+            This MarkupExtension can be used in XAML to Supply a System.Environment.SpecialFolder
+            enumeration member as CommandParameter or any other binding item.
+            
+            XAML Example: CommandParameter="{views:SpecialFolderMarkUpExtension SpecialFolder=ProgramFiles}"
+            
+            Based on Blog: http://10rem.net/blog/2011/03/09/creating-a-custom-markup-extension-in-wpf-and-soon-silverlight
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Views.SpecialFolderMarkUpExtension.#ctor">
+            <summary>
+            Class constructor
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Views.SpecialFolderMarkUpExtension.SpecialFolder">
+            <summary>
+            Specifies that an object can be initialized by using a non-default constructor syntax,
+            and that a property of the specified name supplies construction information. This information
+            is primarily for XAML serialization.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Views.SpecialFolderMarkUpExtension.ProvideValue(System.IServiceProvider)">
+            <summary>
+            returns an object that is provided as the value of the target property for this markup extension.
+            </summary>
+        </member>
+        <member name="T:FolderBrowser.Dialogs.ViewModels.DialogBaseViewModel">
+            <summary>
+            A base class for implementing a viewmodel that can drive dialogs
+            or other such views that display a forlder browser or folder picker
+            view for selecintg a folder in the Windows file system.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Dialogs.ViewModels.DialogBaseViewModel.#ctor(FolderBrowser.Interfaces.IBrowserViewModel,FileSystemModels.Interfaces.Bookmark.IBookmarksViewModel)">
+            <summary>
+            Class constructor
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Dialogs.ViewModels.DialogBaseViewModel.TreeBrowser">
+            <summary>
+            Gets the viewmodel that drives the folder picker control.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Dialogs.ViewModels.DialogBaseViewModel.BookmarkedLocations">
+            <summary>
+            Gets the viewmodel that drives the folder bookmark drop down control.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Dialogs.ViewModels.DialogBaseViewModel.ResetBookmarks(FileSystemModels.Interfaces.Bookmark.IBookmarksViewModel)">
+            <summary>
+            (Re-)Connects the Bookmark ViewModel with the
+            <seealso cref="T:FolderBrowser.Interfaces.IBrowserViewModel"/>.BrowsePath(string, bool) method via private method.
+            to enable user's path selection being input to folder browser.
+            </summary>
+            <param name="recentLocations"></param>
+        </member>
+        <member name="M:FolderBrowser.Dialogs.ViewModels.DialogBaseViewModel.BookmarkFolder_RequestEditBookmarkedFolders(System.Object,FileSystemModels.Events.EditBookmarkEvent)">
+            <summary>
+            Removes or adds a folder bookmark if the event requests that.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:FolderBrowser.Dialogs.ViewModels.DropDownViewModel">
+            <summary>
+            A viewmodel in MVVM style to drive a folder browser
+            or folder picker view that is display in a WPF drop
+            down button view.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Dialogs.ViewModels.DropDownViewModel.#ctor(FolderBrowser.Interfaces.IBrowserViewModel,FileSystemModels.Interfaces.Bookmark.IBookmarksViewModel,FolderBrowser.Dialogs.Interfaces.DropDownClosedResult)">
+            <summary>
+            Class constructor
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Dialogs.ViewModels.DropDownViewModel.ResultCallback">
+            <summary>
+            Gets/sets a property that can be used to specify a delegete method that is called upon
+            close of the drop down button element.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Dialogs.ViewModels.DropDownViewModel.Width">
+            <summary>
+            Gets/sets the width of the drop down control.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Dialogs.ViewModels.DropDownViewModel.Height">
+            <summary>
+            Gets/sets the height of the drop down control.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Dialogs.ViewModels.DropDownViewModel.ButtonLabel">
+            <summary>
+            Gets the selected item of the DropDown viewmodel.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Dialogs.ViewModels.DropDownViewModel.IsOpen">
+            <summary>
+            Gets/sets bound property to determine whether
+            drop-down/pop-up element is open or not.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Dialogs.ViewModels.DropDownViewModel.CancelCommand">
+            <summary>
+            Gets a command to implement the Cancel (button) click command.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Dialogs.ViewModels.DropDownViewModel.OKCommand">
+            <summary>
+            Gets a command to implement the OK (button) click command.
+            </summary>
+        </member>
+        <member name="T:FolderBrowser.Dialogs.ViewModels.DialogViewModel">
+            <summary>
+            A dialog viewmodel in MVVM style to drive a folder browser
+            or folder picker dialog with a WPF view.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.Dialogs.ViewModels.DialogViewModel.#ctor(FolderBrowser.Interfaces.IBrowserViewModel,FileSystemModels.Interfaces.Bookmark.IBookmarksViewModel)">
+            <summary>
+            Class constructor
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Dialogs.ViewModels.DialogViewModel.DialogCloseResult">
+            <summary>
+            This can be used to close the attached view via ViewModel
+            
+            Source: http://stackoverflow.com/questions/501886/wpf-mvvm-newbie-how-should-the-viewmodel-close-the-form
+            </summary>
+        </member>
+        <member name="T:FolderBrowser.Dialogs.Interfaces.UpdateCurrentPath">
+            <summary>
+            Defines a delegate that is called when the view is closed.
+            This delegate can be used to update the selected path
+            in calling client app.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FolderBrowser.Dialogs.Interfaces.UpdateBookmarks">
+            <summary>
+            Defines a delegate that is called when the view is closed.
+            This delegate can be used to update the corresponding bookmarks
+            in the client app.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FolderBrowser.Dialogs.Interfaces.Result">
+            <summary>
+            Specifies the event on which the drop had been closed.
+            </summary>
+        </member>
+        <member name="F:FolderBrowser.Dialogs.Interfaces.Result.Unknown">
+            <summary>
+            Indicates that the drop down was closed without either
+            clicking cancel or OK button. This is possible if the
+            user clicks into a non-drop down area.
+            </summary>
+        </member>
+        <member name="F:FolderBrowser.Dialogs.Interfaces.Result.OK">
+            <summary>
+            Drop down was cloased with the OK button.
+            </summary>
+        </member>
+        <member name="F:FolderBrowser.Dialogs.Interfaces.Result.Cancel">
+            <summary>
+            Drop down was cloased with Cancel button.
+            </summary>
+        </member>
+        <member name="T:FolderBrowser.Dialogs.Interfaces.DropDownClosedResult">
+            <summary>
+            Defines a delegate callback method that is invoked when the drop down
+            has closed on click OK or Cancel or otherwise (user clicks in non-drop down area)
+            </summary>
+            <param name="bookmarks"></param>
+            <param name="selectedPath"></param>
+            <param name="result"></param>
+        </member>
+        <member name="T:FolderBrowser.Dialogs.Interfaces.IDropDownViewModel">
+            <summary>
+            Defines an interface to a viewmodel that can be used to manage a
+            view that is visible via drop down button.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Dialogs.Interfaces.IDropDownViewModel.ButtonLabel">
+            <summary>
+            Gets/sets the label of the drop down button.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Dialogs.Interfaces.IDropDownViewModel.Height">
+            <summary>
+            Gets/sets the (initial) height of the drop down button.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Dialogs.Interfaces.IDropDownViewModel.Width">
+            <summary>
+            Gets/sets the (initial) width of the drop down button.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Dialogs.Interfaces.IDropDownViewModel.IsOpen">
+            <summary>
+            Gets/sets whether the drop down element is currently open or not.
+            (relevant for binding to view)
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Dialogs.Interfaces.IDropDownViewModel.CancelCommand">
+            <summary>
+            Gets/sets a command that cancels the display of the drop down element.
+            (relevant for binding to view)
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Dialogs.Interfaces.IDropDownViewModel.OKCommand">
+            <summary>
+            Gets/sets a command that OK'eys the display of the drop down element.
+            (relevant for binding to view)
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Dialogs.Interfaces.IDropDownViewModel.ResultCallback">
+            <summary>
+            Gets a property that can be used to specify a delegete method that is called upon
+            close of the drop down button element.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Dialogs.Interfaces.IDropDownViewModel.UpdateInitialPath">
+            <summary>
+            Gets/sets the initial path that is displayed when the view is loaded
+            for the very first time.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Dialogs.Interfaces.IDropDownViewModel.UpdateInitialBookmarks">
+            <summary>
+            Gets/sets the bookmarks (if any) for display when the view is loaded
+            for the very first time.
+            </summary>
+        </member>
+        <member name="T:FolderBrowser.Dialogs.Interfaces.IDialogViewModel">
+            <summary>
+            Defines an interface to a viewmodel that can be used to drive a dialog.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Dialogs.Interfaces.IDialogViewModel.DialogCloseResult">
+            <summary>
+            Gets a property that can be set by the viewmodel to indicate for the
+            view that the dialog should now be closed.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Dialogs.Interfaces.IDialogViewModel.TreeBrowser">
+            <summary>
+            Gets the viewmodel that drives the folder picker control.
+            </summary>
+        </member>
+        <member name="P:FolderBrowser.Dialogs.Interfaces.IDialogViewModel.BookmarkedLocations">
+            <summary>
+            Gets the viewmodel that drives the folder bookmark drop down control.
+            </summary>
+        </member>
+        <member name="T:FolderBrowser.FolderBrowserFactory">
+            <summary>
+            Implements a factory for generating internal classes that are otherwise
+            accessible through public interface definitions only. Use this factory to generate
+            the main classes and work with their properties and methods that are accessible
+            through their related interface definitions.
+            </summary>
+        </member>
+        <member name="M:FolderBrowser.FolderBrowserFactory.CreateDropDownViewModel(FolderBrowser.Interfaces.IBrowserViewModel,FileSystemModels.Interfaces.Bookmark.IBookmarksViewModel,FolderBrowser.Dialogs.Interfaces.DropDownClosedResult)">
+            <summary>
+            Create a dropdown viewmodel object that can be used to manage a dropdown view
+            that contains a browser naviagtion (directory picker) control.
+            </summary>
+            <param name="treeBrowser"></param>
+            <param name="recentLocations"></param>
+            <param name="resultCallback"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.FolderBrowserFactory.CreateBrowserViewModel(System.Boolean,System.String)">
+            <summary>
+            Create a browser viewmodel object that can be used to manage a
+            browser naviagtion (directory picker) control.
+            </summary>
+            <param name="initialPath"></param>
+            <param name="specialFolderVisibility"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.FolderBrowserFactory.CreateDialogViewModel(FolderBrowser.Interfaces.IBrowserViewModel,FileSystemModels.Interfaces.Bookmark.IBookmarksViewModel)">
+            <summary>
+            Create a dialog viewmodel object that can be used to manage a dialog
+            that contains a browser naviagtion (directory picker) control.
+            </summary>
+            <param name="treeBrowser"></param>
+            <param name="recentLocations"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderBrowser.FolderBrowserFactory.CreateCustomFolderItemViewModel(System.Environment.SpecialFolder)">
+            <summary>
+            Creates an object that can be used to drive an item of list
+            of custom folders (Music, Desktop, etc...).
+            </summary>
+            <param name="specialFolder"></param>
+            <returns></returns>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
+        </member>
+    </members>
+</doc>

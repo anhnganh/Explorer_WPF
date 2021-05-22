@@ -1,0 +1,415 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FolderControlsLib</name>
+    </assembly>
+    <members>
+        <member name="T:FolderControlsLib.Factory">
+            <summary>
+            Implements factory methods that creates library objects that are accessible
+            through interfaces but are otherwise invisible for the outside world.
+            </summary>
+        </member>
+        <member name="M:FolderControlsLib.Factory.CreateLogicalDrive(System.String)">
+            <summary>
+            Public construction method to create a <see cref="T:FolderControlsLib.Interfaces.IFolderItemViewModel"/>
+            object that represents a logical drive (eg 'C:\')
+            </summary>
+            <param name="curdir"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderControlsLib.Factory.CreateFolderComboBoxVM">
+            <summary>
+            Returns a new viewmodel that can be used to drive a folder combobox.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FolderControlsLib.Interfaces.IFolderComboBoxViewModel">
+            <summary>
+            Defines an interface to a viewmodel that can be used for a
+            combobox that browses to different folder locations.
+            </summary>
+        </member>
+        <member name="P:FolderControlsLib.Interfaces.IFolderComboBoxViewModel.CurrentItems">
+            <summary>
+            Expose a collection of file system items (folders and hard disks and ...) that
+            can be selected and navigated to in this viewmodel.
+            </summary>
+        </member>
+        <member name="P:FolderControlsLib.Interfaces.IFolderComboBoxViewModel.SelectionChanged">
+            <summary>
+            Gets a command that should be invoked when the combobox view tells
+            the viewmodel that the current path selection has changed
+            (via selection changed event or keyup events).
+            
+            The parameter p can be an array of objects
+            containing objects of the FSItemVM type or
+            p can also be string.
+            
+            Each parameter item that adheres to the above types results in
+            a OnCurrentPathChanged event being fired with the folder path
+            as parameter.
+            </summary>
+        </member>
+        <member name="P:FolderControlsLib.Interfaces.IFolderComboBoxViewModel.SelectedItem">
+            <summary>
+            Gets/sets the currently selected file system viewmodel item.
+            </summary>
+        </member>
+        <member name="P:FolderControlsLib.Interfaces.IFolderComboBoxViewModel.CurrentFolder">
+            <summary>
+            Get/sets viewmodel data pointing at the path
+            of the currently selected folder.
+            </summary>
+        </member>
+        <member name="P:FolderControlsLib.Interfaces.IFolderComboBoxViewModel.CurrentFolderToolTip">
+            <summary>
+            Gets a string that can be displayed as a tooltip for the
+            viewmodel data pointing at the path of the currently selected folder.
+            </summary>
+        </member>
+        <member name="T:FolderControlsLib.Interfaces.IFolderItemViewModel">
+            <summary>
+            Defines properties and methods of an item that is used to display folder
+            related information in a list like fashion with indentation if possible.
+            (combobox, etc...).
+            </summary>
+        </member>
+        <member name="T:FolderControlsLib.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:FolderControlsLib.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:FolderControlsLib.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:FolderControlsLib.ViewModels.Base.RelayCommand`1">
+            <summary>
+            A command whose sole purpose is to 
+            relay its functionality to other
+            objects by invoking delegates. The
+            default return value for the CanExecute
+            method is 'true'.
+            
+            Source: http://www.codeproject.com/Articles/31837/Creating-an-Internationalized-Wizard-in-WPF
+            </summary>
+        </member>
+        <member name="M:FolderControlsLib.ViewModels.Base.RelayCommand`1.#ctor(System.Action{`0})">
+            <summary>
+            Class constructor
+            </summary>
+            <param name="execute"></param>
+        </member>
+        <member name="M:FolderControlsLib.ViewModels.Base.RelayCommand`1.#ctor(System.Action{`0},System.Predicate{`0})">
+            <summary>
+            Creates a new command.
+            </summary>
+            <param name="execute">The execution logic.</param>
+            <param name="canExecute">The execution status logic.</param>
+        </member>
+        <member name="E:FolderControlsLib.ViewModels.Base.RelayCommand`1.CanExecuteChanged">
+            <summary>
+            Eventhandler to re-evaluate whether this command can execute or not
+            </summary>
+        </member>
+        <member name="M:FolderControlsLib.ViewModels.Base.RelayCommand`1.CanExecute(System.Object)">
+            <summary>
+            Determine whether this pre-requisites to execute this command are given or not.
+            </summary>
+            <param name="parameter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderControlsLib.ViewModels.Base.RelayCommand`1.Execute(System.Object)">
+            <summary>
+            Execute the command method managed in this class.
+            </summary>
+            <param name="parameter"></param>
+        </member>
+        <member name="T:FolderControlsLib.ViewModels.Base.RelayCommand">
+            <summary>
+            A command whose sole purpose is to 
+            relay its functionality to other
+            objects by invoking delegates. The
+            default return value for the CanExecute
+            method is 'true'.
+            </summary>
+        </member>
+        <member name="M:FolderControlsLib.ViewModels.Base.RelayCommand.#ctor(System.Action)">
+            <summary>
+            Creates a new command that can always execute.
+            </summary>
+            <param name="execute">The execution logic.</param>
+        </member>
+        <member name="M:FolderControlsLib.ViewModels.Base.RelayCommand.#ctor(FolderControlsLib.ViewModels.Base.RelayCommand)">
+            <summary>
+            Copy constructor
+            </summary>
+            <param name="inputRC"></param>
+        </member>
+        <member name="M:FolderControlsLib.ViewModels.Base.RelayCommand.#ctor(System.Action,System.Func{System.Boolean})">
+            <summary>
+            Creates a new command.
+            </summary>
+            <param name="execute">The execution logic.</param>
+            <param name="canExecute">The execution status logic.</param>
+        </member>
+        <member name="E:FolderControlsLib.ViewModels.Base.RelayCommand.CanExecuteChanged">
+            <summary>
+            Eventhandler to re-evaluate whether this command can execute or not
+            </summary>
+        </member>
+        <member name="M:FolderControlsLib.ViewModels.Base.RelayCommand.CanExecute(System.Object)">
+            <summary>
+            Execute the attached CanExecute methode delegate (or always return true)
+            to determine whether the command managed in this object can execute or not.
+            </summary>
+            <param name="parameter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderControlsLib.ViewModels.Base.RelayCommand.Execute(System.Object)">
+            <summary>
+            Return the attached delegate method.
+            </summary>
+            <param name="parameter"></param>
+        </member>
+        <member name="T:FolderControlsLib.ViewModels.Base.ViewModelBase">
+            <summary>
+            Implements a base class for all viewmodel classes
+            that implements <seealso cref="T:System.ComponentModel.INotifyPropertyChanged"/> interface for binding.
+            </summary>
+        </member>
+        <member name="E:FolderControlsLib.ViewModels.Base.ViewModelBase.PropertyChanged">
+            <summary>
+            Standard implementation of <seealso cref="T:System.ComponentModel.INotifyPropertyChanged"/>.
+            </summary>
+        </member>
+        <member name="M:FolderControlsLib.ViewModels.Base.ViewModelBase.RaisePropertyChanged``1(System.Linq.Expressions.Expression{System.Func{``0}})">
+            <summary>
+            Tell bound controls (via WPF binding) to refresh their display.
+            
+            Sample call: this.NotifyPropertyChanged(() => this.IsSelected);
+            where 'this' is derived from <seealso cref="T:FolderControlsLib.ViewModels.Base.ViewModelBase"/>
+            and IsSelected is a property.
+            </summary>
+            <typeparam name="TProperty"></typeparam>
+            <param name="property"></param>
+        </member>
+        <member name="M:FolderControlsLib.ViewModels.Base.ViewModelBase.RaisePropertyChanged(System.String)">
+            <summary>
+            Tell bound controls (via WPF binding) to refresh their display.
+            Standard implementation through <seealso cref="T:System.ComponentModel.INotifyPropertyChanged"/>.
+            </summary>
+            <param name="propertyName"></param>
+        </member>
+        <member name="T:FolderControlsLib.ViewModels.FolderComboBoxViewModel">
+            <summary>
+            Class implements a viewmodel that can be used for a
+            combobox that can be used to browse to different folder locations.
+            </summary>
+        </member>
+        <member name="M:FolderControlsLib.ViewModels.FolderComboBoxViewModel.#ctor">
+            <summary>
+            Class constructor
+            </summary>
+        </member>
+        <member name="E:FolderControlsLib.ViewModels.FolderComboBoxViewModel.BrowseEvent">
+            <summary>
+            Indicates when the viewmodel starts heading off somewhere else
+            and when its done browsing to a new location.
+            </summary>
+        </member>
+        <member name="P:FolderControlsLib.ViewModels.FolderComboBoxViewModel.IsBrowsing">
+            <summary>
+            Can only be set by the control if user started browser process
+            
+            Use IsBrowsing and IsExternallyBrowsing to lock the controls UI
+            during browse operations or display appropriate progress bar(s).
+            </summary>
+        </member>
+        <member name="P:FolderControlsLib.ViewModels.FolderComboBoxViewModel.IsExternallyBrowsing">
+            <summary>
+            This should only be set by the controller that started the browser process.
+            
+            Use IsBrowsing and IsExternallyBrowsing to lock the controls UI
+            during browse operations or display appropriate progress bar(s).
+            </summary>
+        </member>
+        <member name="P:FolderControlsLib.ViewModels.FolderComboBoxViewModel.CurrentItems">
+            <summary>
+            Expose a collection of file system items (folders and hard disks and ...) that
+            can be selected and navigated to in this viewmodel.
+            </summary>
+        </member>
+        <member name="P:FolderControlsLib.ViewModels.FolderComboBoxViewModel.SelectedItem">
+            <summary>
+            Gets/sets the currently selected file system viewmodel item.
+            </summary>
+        </member>
+        <member name="P:FolderControlsLib.ViewModels.FolderComboBoxViewModel.CurrentFolder">
+            <summary>
+            Get/sets viewmodel data pointing at the path
+            of the currently selected folder.
+            </summary>
+        </member>
+        <member name="P:FolderControlsLib.ViewModels.FolderComboBoxViewModel.CurrentFolderToolTip">
+            <summary>
+            Gets a string that can be displayed as a tooltip for the
+            viewmodel data pointing at the path of the currently selected folder.
+            </summary>
+        </member>
+        <member name="P:FolderControlsLib.ViewModels.FolderComboBoxViewModel.SelectionChanged">
+            <summary>
+            Gets a command that should be invoked when the combobox view tells
+            the viewmodel that the current path selection has changed
+            (via selection changed event or keyup events).
+            
+            The parameter p can be an array of objects
+            containing objects of the FSItemVM type or
+            p can also be string.
+            
+            Each parameter item that adheres to the above types results in
+            a OnCurrentPathChanged event being fired with the folder path
+            as parameter.
+            </summary>
+        </member>
+        <member name="M:FolderControlsLib.ViewModels.FolderComboBoxViewModel.FileSystemModels#Browse#INavigateable#NavigateTo(FileSystemModels.Browse.BrowseRequest)">
+            <summary>
+            Controller can start browser process if IsBrowsing = false
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderControlsLib.ViewModels.FolderComboBoxViewModel.FileSystemModels#Browse#INavigateable#NavigateToAsync(FileSystemModels.Browse.BrowseRequest)">
+            <summary>
+            Controller can start browser process if IsBrowsing = false
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FolderControlsLib.ViewModels.FolderComboBoxViewModel.FileSystemModels#Browse#INavigateable#SetExternalBrowsingState(System.Boolean)">
+            <summary>
+            Sets the IsExternalBrowsing state and cleans up any running processings
+            if any. This method should only be called by an external controll instance.
+            </summary>
+            <param name="isBrowsing"></param>
+        </member>
+        <member name="M:FolderControlsLib.ViewModels.FolderComboBoxViewModel.PopulateView(FileSystemModels.Browse.BrowseRequest)">
+            <summary>
+            Can be invoked to refresh the currently visible set of data.
+            </summary>
+        </member>
+        <member name="M:FolderControlsLib.ViewModels.FolderComboBoxViewModel.SelectionChanged_ExecutedAsync(System.Object)">
+            <summary>
+            Method executes when the SelectionChanged command is invoked.
+            The parameter <paramref name="p"/> can be an array of objects
+            containing objects of the <seealso cref="T:FolderControlsLib.Interfaces.IFolderItemViewModel"/> type
+            or p can also be string.
+            
+            Each parameter item that adheres to the above types results in
+            a OnCurrentPathChanged event being fired with the folder path
+            as parameter.
+            
+            This mwthod can typically be invoked by:
+            1> Edit the text portion + Enter in the control or
+            2> By selecting an entry from the drop down list of the combobox.
+            </summary>
+            <param name="p"></param>
+        </member>
+        <member name="M:FolderControlsLib.ViewModels.FolderComboBoxViewModel.CurrentItemsClear">
+            <summary>
+            Clears the collection of current file/folder items and makes sure
+            the operation is performed on the dispatcher thread.
+            </summary>
+        </member>
+        <member name="M:FolderControlsLib.ViewModels.FolderComboBoxViewModel.CurrentItemsAdd(FolderControlsLib.Interfaces.IFolderItemViewModel)">
+            <summary>
+            Adds another item into the collection of file/folder items
+            and ensures the operation is performed on the dispatcher thread.
+            </summary>
+        </member>
+        <member name="T:FolderControlsLib.ViewModels.FolderItemViewModel">
+            <summary>
+            The Viewmodel for file system items
+            </summary>
+        </member>
+        <member name="F:FolderControlsLib.ViewModels.FolderItemViewModel.Logger">
+            <summary>
+            Logger facility
+            </summary>
+        </member>
+        <member name="M:FolderControlsLib.ViewModels.FolderItemViewModel.#ctor(FileSystemModels.Interfaces.IPathModel,System.String)">
+            <summary>
+            class constructor
+            </summary>
+            <param name="model"></param>
+            <param name="itemName"></param>
+        </member>
+        <member name="M:FolderControlsLib.ViewModels.FolderItemViewModel.#ctor">
+            <summary>
+            Hidden standard class constructor
+            </summary>
+        </member>
+        <member name="P:FolderControlsLib.ViewModels.FolderItemViewModel.ItemType">
+            <summary>
+            Gets the type (folder, file) of this item
+            </summary>
+        </member>
+        <member name="P:FolderControlsLib.ViewModels.FolderItemViewModel.ItemPath">
+            <summary>
+            Gets the path to this item
+            </summary>
+        </member>
+        <member name="P:FolderControlsLib.ViewModels.FolderItemViewModel.IsExpanded">
+            <summary>
+            Gets whether this folder is currently expanded or not.
+            
+            This viewmodel, currently, has no use case for an expanded item.
+            Therefore, this property returns a constanst false value.
+            </summary>
+        </member>
+        <member name="P:FolderControlsLib.ViewModels.FolderItemViewModel.ItemName">
+            <summary>
+            Gets a name that can be used for display
+            (is not necessarily the same as path)
+            </summary>
+        </member>
+        <member name="P:FolderControlsLib.ViewModels.FolderItemViewModel.ItemDisplayString">
+            <summary>
+            Gets a folder item string for display purposes.
+            This string can evaluete to 'C:\ (Windows)' for drives,
+            if the 'C:\' drive was named 'Windows'.
+            </summary>
+        </member>
+        <member name="P:FolderControlsLib.ViewModels.FolderItemViewModel.ShowIcon">
+            <summary>
+            Gets whether or not to show a tooltip for this item.
+            </summary>
+        </member>
+        <member name="M:FolderControlsLib.ViewModels.FolderItemViewModel.ToString">
+            <summary>
+            Standard method to display contents of this class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FolderControlsLib.ViewModels.FolderItemViewModel.DirectoryPathExists">
+            <summary>
+            Determine whether a given path is an exeisting directory or not.
+            </summary>
+            <returns>true if this directory exists and otherwise false</returns>
+        </member>
+        <member name="M:FolderControlsLib.ViewModels.FolderItemViewModel.SetDisplayName(System.String)">
+            <summary>
+            Sets the display name of this item.
+            </summary>
+            <param name="stringToDisplay"></param>
+        </member>
+    </members>
+</doc>

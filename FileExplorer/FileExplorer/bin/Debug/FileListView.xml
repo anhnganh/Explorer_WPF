@@ -1,0 +1,896 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FileListView</name>
+    </assembly>
+    <members>
+        <member name="T:FileListView.Factory">
+            <summary>
+            Implements factory methods that create library objects that are accessible
+            through interfaces but are otherwise invisible for the outside world.
+            </summary>
+        </member>
+        <member name="M:FileListView.Factory.CreateFileListViewModel">
+            <summary>
+            Creates a viewmodel object that implements the <see cref="T:FileListView.Interfaces.IFileListViewModel"/>
+            interface to drive a file listview.
+            </summary>
+            <returns>A new instance of a file list viewmodel that can be used to drive
+            a listview that shows folders and files in the file system.</returns>
+        </member>
+        <member name="M:FileListView.Factory.CreateItem(System.String,FileSystemModels.Models.FSItems.Base.FSItemType,System.String)">
+            <summary>
+            Creates a viewmodel object that implements the <see cref="T:FileListView.Interfaces.ILVItemViewModel"/>
+            interface to drive one item that can be part of a file listview.
+            </summary>
+            <param name="path"></param>
+            <param name="type"></param>
+            <param name="displayName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FileListView.Interfaces.IFileOpenEventSource">
+            <summary>
+            implements an interface that can be used to request event based actions, such as,
+            opening a file system item (in the client application or windows).
+            </summary>
+        </member>
+        <member name="E:FileListView.Interfaces.IFileOpenEventSource.OnFileOpen">
+            <summary>
+            Event is fired to indicate that user wishes to open a file via this viewmodel.
+            </summary>
+        </member>
+        <member name="T:FileListView.Interfaces.ILVItemViewModel">
+            <summary>
+            Defines the properties and members of an item view model that is
+            designed for usage in list views or similar controls.
+            </summary>
+        </member>
+        <member name="M:FileListView.Interfaces.ILVItemViewModel.RenameFileOrFolder(System.String)">
+            <summary>
+            Renames this item with the indicated name.
+            
+            This includes renaming the item in the file system.
+            </summary>
+            <param name="newFolderName"></param>
+        </member>
+        <member name="T:FileListView.Interfaces.IFileListViewModel">
+            <summary>
+            Interface implements a common ground for a class that organizes a filter combobox
+            view with a file list view.
+            </summary>
+        </member>
+        <member name="P:FileListView.Interfaces.IFileListViewModel.BookmarkFolder">
+            <summary>
+            Expose properties to commands that work with the bookmarking of folders.
+            </summary>
+        </member>
+        <member name="P:FileListView.Interfaces.IFileListViewModel.CurrentItems">
+            <summary>
+            Gets/sets list of files and folders to be displayed in connected view.
+            </summary>
+        </member>
+        <member name="P:FileListView.Interfaces.IFileListViewModel.ShowFolders">
+            <summary>
+            Gets/sets whether the list of folders and files should include folders or not.
+            </summary>
+        </member>
+        <member name="P:FileListView.Interfaces.IFileListViewModel.ShowHidden">
+            <summary>
+            Gets/sets whether the list of folders and files includes hidden folders or files.
+            </summary>
+        </member>
+        <member name="P:FileListView.Interfaces.IFileListViewModel.ShowIcons">
+            <summary>
+            Gets/sets whether the list of folders and files includes an icon or not.
+            </summary>
+        </member>
+        <member name="P:FileListView.Interfaces.IFileListViewModel.IsFiltered">
+            <summary>
+            Gets whether the list of folders and files is filtered or not.
+            </summary>
+        </member>
+        <member name="P:FileListView.Interfaces.IFileListViewModel.CurrentFolder">
+            <summary>
+            Gets the current path this viewmodel assigned to look at.
+            This property is not updated (must be polled) so its not
+            a good idea to bind to it.
+            </summary>
+        </member>
+        <member name="P:FileListView.Interfaces.IFileListViewModel.NavigateDownCommand">
+            <summary>
+            Browse into a given a path.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:FileListView.Interfaces.IFileListViewModel.RefreshCommand">
+            <summary>
+            Gets the command that updates the currently viewed
+            list of directory items (files and sub-directories).
+            </summary>
+        </member>
+        <member name="P:FileListView.Interfaces.IFileListViewModel.ToggleIsFolderVisibleCommand">
+            <summary>
+            Toggles the visibiliy of folders in the folder/files listview.
+            </summary>
+        </member>
+        <member name="P:FileListView.Interfaces.IFileListViewModel.ToggleIsIconVisibleCommand">
+            <summary>
+            Toggles the visibiliy of icons in the folder/files listview.
+            </summary>
+        </member>
+        <member name="P:FileListView.Interfaces.IFileListViewModel.ToggleIsHiddenVisibleCommand">
+            <summary>
+            Toggles the visibiliy of hidden files/folders in the folder/files listview.
+            </summary>
+        </member>
+        <member name="P:FileListView.Interfaces.IFileListViewModel.OpenContainingFolderCommand">
+            <summary>
+            Gets a command that will open the folder in which an item is stored.
+            The item (path to a file) is expected as
+            <seealso cref="T:FileListView.Interfaces.ILVItemViewModel"/> parameter.
+            </summary>
+        </member>
+        <member name="P:FileListView.Interfaces.IFileListViewModel.OpenInWindowsCommand">
+            <summary>
+            Gets a command that will open the selected item with the current default application
+            in Windows. The selected item (path to a file) is expected as <seealso cref="T:FileListView.Interfaces.ILVItemViewModel"/> parameter.
+            (eg: Item is HTML file -> Open in Windows starts the web browser for viewing the HTML
+            file if thats the currently associated Windows default application.
+            </summary>
+        </member>
+        <member name="P:FileListView.Interfaces.IFileListViewModel.CopyPathCommand">
+            <summary>
+            Gets a command that will copy the path of an item into the Windows Clipboard.
+            The item (path to a file) is expected as <seealso cref="T:FileListView.Interfaces.ILVItemViewModel"/> parameter.
+            </summary>
+        </member>
+        <member name="M:FileListView.Interfaces.IFileListViewModel.ApplyFilter(System.String)">
+            <summary>
+            Applies a filter string (which can contain multiple
+            alternative regular expression filter items) and updates
+            the current display.
+            </summary>
+            <param name="filterText"></param>
+        </member>
+        <member name="M:FileListView.Interfaces.IFileListViewModel.SetIsFolderVisible(System.Boolean)">
+            <summary>
+            Configure whether folders are part of the list of
+            files and folders or not (list only files without folders).
+            </summary>
+            <param name="isFolderVisible"></param>
+        </member>
+        <member name="M:FileListView.Interfaces.IFileListViewModel.SetIsFiltered(System.Boolean)">
+            <summary>
+            Configure whether folders are part of the list of
+            files and folders or not (list only files without folders).
+            </summary>
+            <param name="isFolderVisible"></param>
+        </member>
+        <member name="M:FileListView.Interfaces.IFileListViewModel.SetShowIcons(System.Boolean)">
+            <summary>
+            Configure whether icons in listview should be shown or not.
+            </summary>
+            <param name="showIcons"></param>
+        </member>
+        <member name="M:FileListView.Interfaces.IFileListViewModel.SetShowHidden(System.Boolean)">
+            <summary>
+            Configure whether or not hidden files are shown in listview.
+            </summary>
+            <param name="showHiddenFiles"></param>
+        </member>
+        <member name="T:FileListView.ViewModels.Base.RelayCommand`1">
+            <summary>
+            A command whose sole purpose is to 
+            relay its functionality to other
+            objects by invoking delegates. The
+            default return value for the CanExecute
+            method is 'true'.
+            
+            Source: http://www.codeproject.com/Articles/31837/Creating-an-Internationalized-Wizard-in-WPF
+            </summary>
+        </member>
+        <member name="M:FileListView.ViewModels.Base.RelayCommand`1.#ctor(System.Action{`0})">
+            <summary>
+            Class constructor
+            </summary>
+            <param name="execute"></param>
+        </member>
+        <member name="M:FileListView.ViewModels.Base.RelayCommand`1.#ctor(System.Action{`0},System.Predicate{`0})">
+            <summary>
+            Creates a new command.
+            </summary>
+            <param name="execute">The execution logic.</param>
+            <param name="canExecute">The execution status logic.</param>
+        </member>
+        <member name="E:FileListView.ViewModels.Base.RelayCommand`1.CanExecuteChanged">
+            <summary>
+            Eventhandler to re-evaluate whether this command can execute or not
+            </summary>
+        </member>
+        <member name="M:FileListView.ViewModels.Base.RelayCommand`1.CanExecute(System.Object)">
+            <summary>
+            Determine whether this pre-requisites to execute this command are given or not.
+            </summary>
+            <param name="parameter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FileListView.ViewModels.Base.RelayCommand`1.Execute(System.Object)">
+            <summary>
+            Execute the command method managed in this class.
+            </summary>
+            <param name="parameter"></param>
+        </member>
+        <member name="T:FileListView.ViewModels.Base.RelayCommand">
+            <summary>
+            A command whose sole purpose is to 
+            relay its functionality to other
+            objects by invoking delegates. The
+            default return value for the CanExecute
+            method is 'true'.
+            </summary>
+        </member>
+        <member name="M:FileListView.ViewModels.Base.RelayCommand.#ctor(System.Action)">
+            <summary>
+            Creates a new command that can always execute.
+            </summary>
+            <param name="execute">The execution logic.</param>
+        </member>
+        <member name="M:FileListView.ViewModels.Base.RelayCommand.#ctor(FileListView.ViewModels.Base.RelayCommand)">
+            <summary>
+            Copy constructor
+            </summary>
+            <param name="inputRC"></param>
+        </member>
+        <member name="M:FileListView.ViewModels.Base.RelayCommand.#ctor(System.Action,System.Func{System.Boolean})">
+            <summary>
+            Creates a new command.
+            </summary>
+            <param name="execute">The execution logic.</param>
+            <param name="canExecute">The execution status logic.</param>
+        </member>
+        <member name="E:FileListView.ViewModels.Base.RelayCommand.CanExecuteChanged">
+            <summary>
+            Eventhandler to re-evaluate whether this command can execute or not
+            </summary>
+        </member>
+        <member name="M:FileListView.ViewModels.Base.RelayCommand.CanExecute(System.Object)">
+            <summary>
+            Execute the attached CanExecute methode delegate (or always return true)
+            to determine whether the command managed in this object can execute or not.
+            </summary>
+            <param name="parameter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FileListView.ViewModels.Base.RelayCommand.Execute(System.Object)">
+            <summary>
+            Return the attached delegate method.
+            </summary>
+            <param name="parameter"></param>
+        </member>
+        <member name="T:FileListView.ViewModels.Base.ViewModelBase">
+            <summary>
+            Implements a base class for all viewmodel classes
+            that implements <seealso cref="T:System.ComponentModel.INotifyPropertyChanged"/> interface for binding.
+            </summary>
+        </member>
+        <member name="E:FileListView.ViewModels.Base.ViewModelBase.PropertyChanged">
+            <summary>
+            Standard implementation of <seealso cref="T:System.ComponentModel.INotifyPropertyChanged"/>.
+            </summary>
+        </member>
+        <member name="M:FileListView.ViewModels.Base.ViewModelBase.RaisePropertyChanged``1(System.Linq.Expressions.Expression{System.Func{``0}})">
+            <summary>
+            Tell bound controls (via WPF binding) to refresh their display.
+            
+            Sample call: this.NotifyPropertyChanged(() => this.IsSelected);
+            where 'this' is derived from <seealso cref="T:FileListView.ViewModels.Base.ViewModelBase"/>
+            and IsSelected is a property.
+            </summary>
+            <typeparam name="TProperty"></typeparam>
+            <param name="property"></param>
+        </member>
+        <member name="M:FileListView.ViewModels.Base.ViewModelBase.RaisePropertyChanged(System.String)">
+            <summary>
+            Tell bound controls (via WPF binding) to refresh their display.
+            Standard implementation through <seealso cref="T:System.ComponentModel.INotifyPropertyChanged"/>.
+            </summary>
+            <param name="propertyName"></param>
+        </member>
+        <member name="T:FileListView.ViewModels.EditFolderBookmarks">
+            <summary>
+            Implements to Add/Remove Bookmark entries from
+            a list of bookmarked items.
+            
+            The object should be implenented by any client object that wants to
+            add or remove entries from a bookmark locations model.
+            </summary>
+        </member>
+        <member name="E:FileListView.ViewModels.EditFolderBookmarks.RequestEditBookmarkedFolders">
+            <summary>
+            Invokes the actual event that adds/removes a bookmark in the bookmark
+            model collection at the client side of this event.
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.EditFolderBookmarks.RecentFolderRemoveCommand">
+            <summary>
+            Gets a command that removes folder location via a corresponding event.
+            Expected parameter is an intherited type from <see cref="T:FileListView.ViewModels.LVItemViewModel"/>.
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.EditFolderBookmarks.RecentFolderAddCommand">
+            <summary>
+            Gets a command that adds folder location via a corresponding event.
+            Expected parameter is an intherited type from <see cref="T:FileListView.ViewModels.LVItemViewModel"/>.
+            </summary>
+        </member>
+        <member name="M:FileListView.ViewModels.EditFolderBookmarks.RecentFolderCommand_CanExecute(System.Object)">
+            <summary>
+            Determines whether the add/remove bookmark command can execute.
+            </summary>
+            <param name="param"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FileListView.ViewModels.EditFolderBookmarks.EditRecentFolder_Executed(FileListView.ViewModels.LVItemViewModel,FileSystemModels.Events.EditBookmarkEvent.RecentFolderAction)">
+            <summary>
+            Adds or removes the <paramref name="item"/> from the bookmarks collection
+            at thr receivers (subscriber) end of the event chain.
+            
+            <see cref="E:FileListView.ViewModels.EditFolderBookmarks.RequestEditBookmarkedFolders"/> event.
+            </summary>
+            <param name="item"></param>
+            <param name="action"></param>
+        </member>
+        <member name="T:FileListView.ViewModels.FileListViewModel">
+            <summary>
+            Class implements a list of file items viewmodel for a given directory.
+            </summary>
+        </member>
+        <member name="F:FileListView.ViewModels.FileListViewModel.FilterSplitCharacter">
+            <summary>
+            Defines the delimitor for multiple regular expression filter statements.
+            eg: "*.txt;*.ini"
+            </summary>
+        </member>
+        <member name="F:FileListView.ViewModels.FileListViewModel.Logger">
+            <summary>
+            Log4Net facility to log errors and warnings for this class.
+            </summary>
+        </member>
+        <member name="M:FileListView.ViewModels.FileListViewModel.#ctor">
+            <summary>
+            Standard class constructor
+            </summary>
+        </member>
+        <member name="E:FileListView.ViewModels.FileListViewModel.OnFileOpen">
+            <summary>
+            Event is fired to indicate that user wishes to open a file via this viewmodel.
+            </summary>
+        </member>
+        <member name="E:FileListView.ViewModels.FileListViewModel.BrowseEvent">
+            <summary>
+            Indicates when the viewmodel starts heading off somewhere else
+            and when its done browsing to a new location.
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.FileListViewModel.IsBrowsing">
+            <summary>
+            Can only be set by the control if user started browser process
+            
+            Use IsBrowsing and IsExternallyBrowsing to lock the controls UI
+            during browse operations or display appropriate progress bar(s).
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.FileListViewModel.IsExternallyBrowsing">
+            <summary>
+            This should only be set by the controller that started the browser process.
+            
+            Use IsBrowsing and IsExternallyBrowsing to lock the controls UI
+            during browse operations or display appropriate progress bar(s).
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.FileListViewModel.BookmarkFolder">
+            <summary>
+            Expose properties to commands that work with the bookmarking of folders.
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.FileListViewModel.CurrentItems">
+            <summary>
+            Gets/sets list of files and folders to be displayed in connected view.
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.FileListViewModel.SelectedItem">
+            <summary>
+            Get/set select item in filelist viemodel. This property is used to bind
+            the selectitem of the listbox and enable the BringIntoView behaviour
+            to scroll a selected item into view.
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.FileListViewModel.ShowFolders">
+            <summary>
+            Gets/sets whether the list of folders and files should include folders or not.
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.FileListViewModel.ShowHidden">
+            <summary>
+            Gets/sets whether the list of folders and files includes hidden folders or files.
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.FileListViewModel.ShowIcons">
+            <summary>
+            Gets/sets whether the list of folders and files includes an icon or not.
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.FileListViewModel.IsFiltered">
+            <summary>
+            Gets whether the list of folders and files is filtered or not.
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.FileListViewModel.CurrentFolder">
+            <summary>
+            Gets the current path this viewmodel assigned to look at.
+            This property is not updated (must be polled) so its not
+            a good idea to bind to it.
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.FileListViewModel.NavigateDownCommand">
+            <summary>
+            Browse into a given a path.
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.FileListViewModel.RefreshCommand">
+            <summary>
+            Gets the command that updates the currently viewed
+            list of directory items (files and sub-directories).
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.FileListViewModel.ToggleIsFolderVisibleCommand">
+            <summary>
+            Toggles the visibiliy of folders in the folder/files listview.
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.FileListViewModel.ToggleIsIconVisibleCommand">
+            <summary>
+            Toggles the visibiliy of icons in the folder/files listview.
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.FileListViewModel.ToggleIsHiddenVisibleCommand">
+            <summary>
+            Toggles the visibiliy of hidden files/folders in the folder/files listview.
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.FileListViewModel.OpenContainingFolderCommand">
+            <summary>
+            Gets a command that will open the folder in which an item is stored.
+            The item (path to a file) is expected as <seealso cref="T:FileListView.Interfaces.ILVItemViewModel"/> parameter.
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.FileListViewModel.OpenInWindowsCommand">
+            <summary>
+            Gets a command that will open the selected item with the current default application
+            in Windows. The selected item (path to a file) is expected as
+            <seealso cref="T:FileListView.Interfaces.ILVItemViewModel"/> parameter.
+            (eg: Item is HTML file -> Open in Windows starts the web browser for viewing the HTML
+            file if thats the currently associated Windows default application.
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.FileListViewModel.CopyPathCommand">
+            <summary>
+            Gets a command that will copy the path of an item into the Windows Clipboard.
+            The item (path to a file) is expected as <seealso cref="T:FileListView.Interfaces.ILVItemViewModel"/> parameter.
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.FileListViewModel.ToggleIsFilteredCommand">
+            <summary>
+            Toggles whether a file filter is currently applied on a list
+            of files or not.
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.FileListViewModel.RenameCommand">
+            <summary>
+            Renames the folder that is delivered in a Tuple parameter
+            containing the new string and the <see cref="T:FileListView.Interfaces.ILVItemViewModel"/> item
+            who's rename method is to be called in this command.
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.FileListViewModel.StartRenameCommand">
+            <summary>
+            Starts the rename folder process by that renames the folder
+            that is represented by this viewmodel.
+            
+            This command implements an event that triggers the actual rename
+            process in the connected view.
+            
+            The expected parameter is a <see cref="T:FileListView.ViewModels.LVItemViewModel"/>
+            that can be supplied as <see cref="T:FileListView.Interfaces.ILVItemViewModel"/>.
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.FileListViewModel.CreateFolderCommand">
+            <summary>
+            Starts the create folder process by creating a new folder
+            in the given location. The location is supplied as string
+            
+            So, the string is the name of the new folder that is created underneath this folder.
+            The new folder is created with a standard name:
+            'New Folder n'. The new folder n is selected and in rename mode such that users can edit
+            the name of the new folder right away.
+            
+            This command implements an event that triggers the actual rename
+            process in the connected view.
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.FileListViewModel.Notification">
+            <summary>
+            Gets a property that can be bound to the Notification dependency property
+            of the <seealso cref="T:UserNotification.View.NotifyableContentControl"/>.
+            Application developers can invoke the ShowNotification method to show a
+            short pop-up message to the user. The pop-up message is shown in the
+            vicinity of the content control that contains the real control (eg: ListBox)
+            to which this notfication is related to.
+            </summary>
+        </member>
+        <member name="M:FileListView.ViewModels.FileListViewModel.FileSystemModels#Browse#INavigateable#NavigateTo(FileSystemModels.Browse.BrowseRequest)">
+            <summary>
+            Controller can start browser process if IsBrowsing = false
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FileListView.ViewModels.FileListViewModel.FileSystemModels#Browse#INavigateable#NavigateToAsync(FileSystemModels.Browse.BrowseRequest)">
+            <summary>
+            Controller can start browser process if IsBrowsing = false
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FileListView.ViewModels.FileListViewModel.FileSystemModels#Browse#INavigateable#SetExternalBrowsingState(System.Boolean)">
+            <summary>
+            Sets the IsExternalBrowsing state and cleans up any running processings
+            if any. This method should only be called by an external controll instance.
+            </summary>
+            <param name="isBrowsing"></param>
+        </member>
+        <member name="M:FileListView.ViewModels.FileListViewModel.ApplyFilter(System.String)">
+            <summary>
+            Applies a filter string (which can contain multiple
+            alternative regular expression filter items) and updates
+            the current display.
+            </summary>
+            <param name="filterText"></param>
+        </member>
+        <member name="M:FileListView.ViewModels.FileListViewModel.SetIsFolderVisible(System.Boolean)">
+            <summary>
+            Call this method to determine whether folders are part of the list of
+            files and folders or not (list only files without folders).
+            </summary>
+            <param name="isFolderVisible"></param>
+        </member>
+        <member name="M:FileListView.ViewModels.FileListViewModel.SetIsFiltered(System.Boolean)">
+            <summary>
+            Call this method to determine whether folders are part of the list of
+            files and folders or not (list only files without folders).
+            </summary>
+            <param name="isFiltered"></param>
+        </member>
+        <member name="M:FileListView.ViewModels.FileListViewModel.SetShowIcons(System.Boolean)">
+            <summary>
+            Configure whether icons in listview should be shown or not.
+            </summary>
+            <param name="showIcons"></param>
+        </member>
+        <member name="M:FileListView.ViewModels.FileListViewModel.SetShowHidden(System.Boolean)">
+            <summary>
+            Configure whether or not hidden files are shown in listview.
+            </summary>
+            <param name="showHiddenFiles"></param>
+        </member>
+        <member name="M:FileListView.ViewModels.FileListViewModel.PopulateCurrentView(System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Generates a browse request based on the _CurrentFolder value
+            (eg. Refresh current view), attempts to full view it, and returns
+            the result indicator.
+            </summary>
+        </member>
+        <member name="M:FileListView.ViewModels.FileListViewModel.PopulateView(FileSystemModels.Browse.BrowseRequest,System.Boolean)">
+            <summary>
+            Fills the CurrentItems property for display in ItemsControl
+            based view (ListBox, ListView etc.).
+            
+            This method wraps a parameterized version of the same method 
+            with a call that contains the standard data field.
+            </summary>
+            <param name="request"></param>
+            <param name="browseEvent">Defines whether a request should result
+            in an explicit event relayed to a controller or not.</param>
+        </member>
+        <member name="M:FileListView.ViewModels.FileListViewModel.GetParsedFilters(System.String)">
+            <summary>
+            Converts a filter string from "*.txt;*.tex" into a
+            string array based format string[] filterString = { "*.txt", "*.tex" };
+            </summary>
+            <param name="inputFilterString"></param>
+        </member>
+        <member name="M:FileListView.ViewModels.FileListViewModel.CopyPathCommand_Executed(System.String)">
+            <summary>
+            A hyperlink has been clicked. Start a web browser and let it browse to where this points to...
+            </summary>
+            <param name="sFileName"></param>
+        </member>
+        <member name="M:FileListView.ViewModels.FileListViewModel.InternalPopulateView(System.String[],System.IO.DirectoryInfo,System.Boolean)">
+            <summary>
+            Fills the CurrentItems property for display in ItemsControl
+            based view (ListBox, ListView etc.)
+            
+            This version is parameterized since the filterstring can be parsed
+            seperately and does not need to b parsed each time when this method
+            executes.
+            </summary>
+        </member>
+        <member name="M:FileListView.ViewModels.FileListViewModel.CurrentItemClear">
+            <summary>
+            Clears the collection of current file/folder items and makes sure
+            the operation is performed on the dispatcher thread.
+            </summary>
+        </member>
+        <member name="M:FileListView.ViewModels.FileListViewModel.CurrentItemAdd(FileListView.ViewModels.LVItemViewModel)">
+            <summary>
+            Adds another item into the collection of file/folder items
+            and ensures the operation is performed on the dispatcher thread.
+            </summary>
+        </member>
+        <member name="M:FileListView.ViewModels.FileListViewModel.CreateFolderCommandNewFolder(System.String)">
+            <summary>
+            Create a new folder underneath the given parent folder. This method creates
+            the folder with a standard name (eg 'New folder n') on disk and selects it
+            in editing mode to give users a chance for renaming it right away.
+            </summary>
+            <param name="parentFolder"></param>
+        </member>
+        <member name="M:FileListView.ViewModels.FileListViewModel.CreateNewDirectory(System.String)">
+            <summary>
+            Creates a new folder with a standard name (eg: 'New folder n').
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FileListView.ViewModels.LVItemViewModel">
+            <summary>
+            The Viewmodel for file system items
+            </summary>
+        </member>
+        <member name="F:FileListView.ViewModels.LVItemViewModel.Logger">
+            <summary>
+            Logger facility
+            </summary>
+        </member>
+        <member name="M:FileListView.ViewModels.LVItemViewModel.#ctor(System.String,FileSystemModels.Models.FSItems.Base.FSItemType,System.String,System.Boolean)">
+            <summary>
+            class constructor
+            </summary>
+            <param name="curdir"></param>
+            <param name="displayName"></param>
+            <param name="itemType"></param>
+            <param name="showIcon"></param>
+        </member>
+        <member name="M:FileListView.ViewModels.LVItemViewModel.SetDisplayName(System.String)">
+            <summary>
+            Sets the display name of this item.
+            </summary>
+            <param name="itemName"></param>
+        </member>
+        <member name="M:FileListView.ViewModels.LVItemViewModel.#ctor(System.String,FileSystemModels.Models.FSItems.Base.FSItemType,System.String,System.Int32)">
+            <summary>
+            class constructor
+            </summary>
+            <param name="curdir"></param>
+            <param name="itemType"></param>
+            <param name="itemName"></param>
+            <param name="indentation"></param>
+        </member>
+        <member name="M:FileListView.ViewModels.LVItemViewModel.#ctor(FileSystemModels.Interfaces.IPathModel,System.String,System.Boolean)">
+            <summary>
+            class constructor
+            </summary>
+            <param name="model"></param>
+            <param name="itemName"></param>
+            <param name="isReadOnly"></param>
+        </member>
+        <member name="M:FileListView.ViewModels.LVItemViewModel.#ctor">
+            <summary>
+            Hidden standard class constructor
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.LVItemViewModel.ItemType">
+            <summary>
+            Gets the type (folder, file) of this item
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.LVItemViewModel.ItemPath">
+            <summary>
+            Gets the path to this item
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.LVItemViewModel.IsExpanded">
+            <summary>
+            Gets whether this folder is currently expanded or not.
+            
+            This viewmodel, currently, has no use case for an expanded item.
+            Therefore, this property returns a constanst false value.
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.LVItemViewModel.ItemName">
+            <summary>
+            Gets a name that can be used for display
+            (is not necessarily the same as path)
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.LVItemViewModel.ItemDisplayString">
+            <summary>
+            Gets a folder item string for display purposes.
+            This string can evaluete to 'C:\ (Windows)' for drives,
+            if the 'C:\' drive was named 'Windows'.
+            </summary>
+        </member>
+        <member name="P:FileListView.ViewModels.LVItemViewModel.ShowIcon">
+            <summary>
+            Gets whether or not to show an Icon for this item.
+            </summary>
+        </member>
+        <member name="M:FileListView.ViewModels.LVItemViewModel.ToString">
+            <summary>
+            Standard method to display contents of this class.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FileListView.ViewModels.LVItemViewModel.RenameFileOrFolder(System.String)">
+            <summary>
+            Rename the name of a folder or file into a new name.
+            
+            This includes renaming the item in the file system.
+            </summary>
+            <param name="newFolderName"></param>
+        </member>
+        <member name="M:FileListView.ViewModels.LVItemViewModel.DirectoryPathExists">
+            <summary>
+            Determine whether a given path is an exeisting directory or not.
+            </summary>
+            <returns>true if this directory exists and otherwise false</returns>
+        </member>
+        <member name="T:FileListView.Views.Behavior.DoubleClickSelectorItem">
+            <summary>
+            Class implements a <seealso cref="T:System.Windows.Controls.Primitives.Selector"/> double click
+            to command binding attached behaviour.
+            </summary>
+        </member>
+        <member name="M:FileListView.Views.Behavior.DoubleClickSelectorItem.#ctor">
+            <summary>
+            Class constructor
+            </summary>
+        </member>
+        <member name="M:FileListView.Views.Behavior.DoubleClickSelectorItem.GetDoubleClickItemCommand(System.Windows.DependencyObject)">
+            <summary>
+            Gets the value of the DoubleClickItemCommand dependency property.
+            </summary>
+        </member>
+        <member name="M:FileListView.Views.Behavior.DoubleClickSelectorItem.SetDoubleClickItemCommand(System.Windows.DependencyObject,System.Windows.Input.ICommand)">
+            <summary>
+            Sets the value of the DoubleClickItemCommand dependency property.
+            </summary>
+        </member>
+        <member name="T:FileListView.Views.Behavior.BringIntoViewListBoxItem">
+             <summary>
+             Class implements an attached behaviour to bring a selected ListBox item
+             into view when selection is driven by the viewmodel (not the user).
+            
+             Source: http://stackoverflow.com/questions/8827489/scroll-wpf-listbox-to-the-selecteditem-set-in-code-in-a-view-model
+            
+              &lt;ListBox ItemsSource="{Binding Path=MyList}"
+              SelectedItem="{Binding Path=MyItem, Mode=TwoWay}"
+              SelectionMode="Single" 
+              behaviors:BringIntoViewListBoxItem.ScrollSelectedIntoView="True">
+            
+             </summary>
+        </member>
+        <member name="F:FileListView.Views.Behavior.BringIntoViewListBoxItem.ScrollSelectedIntoViewProperty">
+            <summary>
+            Attached dependency property of this behaviour.
+            </summary>
+        </member>
+        <member name="M:FileListView.Views.Behavior.BringIntoViewListBoxItem.GetScrollSelectedIntoView(System.Windows.Controls.ListBox)">
+            <summary>
+            Gets the attached dependency property of this behaviour.
+            </summary>
+        </member>
+        <member name="M:FileListView.Views.Behavior.BringIntoViewListBoxItem.SetScrollSelectedIntoView(System.Windows.Controls.ListBox,System.Boolean)">
+            <summary>
+            Sets the attached dependency property of this behaviour.
+            </summary>
+        </member>
+        <member name="T:FileListView.Views.Behavior.SelectionChangedCommand">
+            <summary>
+            Attached behaviour to implement a selection changed command on a combobox.
+            The combobox generates a SelectionChanged event which in turn generates a
+            Command (in this behavior), which in turn is, when bound, invoked on the viewmodel.
+            </summary>
+        </member>
+        <member name="M:FileListView.Views.Behavior.SelectionChangedCommand.SetChangedCommand(System.Windows.DependencyObject,System.Windows.Input.ICommand)">
+            <summary>
+            Setter method of the attached <seealso cref="T:System.Windows.Input.ICommand"/> ChangedCommand property
+            </summary>
+            <param name="source"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:FileListView.Views.Behavior.SelectionChangedCommand.GetChangedCommand(System.Windows.DependencyObject)">
+            <summary>
+            Getter method of the attached <seealso cref="T:System.Windows.Input.ICommand"/> ChangedCommand property
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FileListView.Views.Behavior.SelectionChangedCommand.SetIsProcessing(System.Windows.DependencyObject,System.Boolean)">
+            <summary>
+            Setter method of the attached <seealso cref="T:System.Boolean"/> IsProcessing property
+            
+            This property provides an additional throtelling which is applied when the
+            bound property is set to true.
+            </summary>
+            <param name="source"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FileListView.Views.Behavior.SelectionChangedCommand.GetIsProcessing(System.Windows.DependencyObject)">
+            <summary>
+            Getter method of the attached <seealso cref="T:System.Boolean"/> IsProcessing property
+            
+            This property provides an additional throtelling which is applied when the
+            bound property is set to true.
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FileListView.Views.Behavior.SelectionChangedCommand.OnSelectionChangedCommandChange(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            This method is hooked in the definition of the <seealso cref="F:FileListView.Views.Behavior.SelectionChangedCommand.ChangedCommandProperty"/>.
+            It is called whenever the attached property changes - in our case the event of binding
+            and unbinding the property to a sink is what we are looking for.
+            </summary>
+            <param name="d"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:FileListView.Views.Behavior.SelectionChangedCommand.Selection_Changed(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+            This method is called when the selection changed event occurs. The sender should be the control
+            on which this behaviour is attached - so we convert the sender into a <seealso cref="T:System.Windows.UIElement"/>
+            and receive the Command through the <seealso cref="M:FileListView.Views.Behavior.SelectionChangedCommand.GetChangedCommand(System.Windows.DependencyObject)"/> getter listed above.
+            
+            This implementation supports binding of delegate commands and routed commands.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:FileListView.Views.BindingProxy">
+            <summary>
+            Implements an XAML proxy which can be used to bind items (TreeViewItem, ListViewItem etc)
+            with a viewmodel that manages the collecrions.
+            
+            Source: http://www.thomaslevesque.com/2011/03/21/wpf-how-to-bind-to-data-when-the-datacontext-is-not-inherited/
+             Issue: http://stackoverflow.com/questions/9994241/mvvm-binding-command-to-contextmenu-item
+            </summary>
+        </member>
+        <member name="F:FileListView.Views.BindingProxy.DataProperty">
+            <summary>
+            Backing store field of the Data dependency property.
+            </summary>
+        </member>
+        <member name="P:FileListView.Views.BindingProxy.Data">
+            <summary>
+            Gets the data object this class is forwarding to everyone
+            who has a reference to this object.
+            </summary>
+        </member>
+        <member name="M:FileListView.Views.BindingProxy.CreateInstanceCore">
+            <summary>
+            Overrides of Freezable
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

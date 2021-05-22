@@ -1,0 +1,505 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HistoryControlLib</name>
+    </assembly>
+    <members>
+        <member name="T:HistoryControlLib.Behaviors.SelectionChangedCommand">
+            <summary>
+            Attached behaviour to implement a selection changed command on a combobox.
+            The combobox generates a SelectionChanged event which in turn generates a
+            Command (in this behavior), which in turn is, when bound, invoked on the viewmodel.
+            </summary>
+        </member>
+        <member name="M:HistoryControlLib.Behaviors.SelectionChangedCommand.SetChangedCommand(System.Windows.DependencyObject,System.Windows.Input.ICommand)">
+            <summary>
+            Setter method of the attached DropCommand <seealso cref="T:System.Windows.Input.ICommand"/> property
+            </summary>
+            <param name="source"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:HistoryControlLib.Behaviors.SelectionChangedCommand.GetChangedCommand(System.Windows.DependencyObject)">
+            <summary>
+            Getter method of the attached DropCommand <seealso cref="T:System.Windows.Input.ICommand"/> property
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HistoryControlLib.Behaviors.SelectionChangedCommand.OnSelectionChangedCommandChange(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            This method is hooked in the definition of the <seealso cref="F:HistoryControlLib.Behaviors.SelectionChangedCommand.ChangedCommandProperty"/>.
+            It is called whenever the attached property changes - in our case the event of binding
+            and unbinding the property to a sink is what we are looking for.
+            </summary>
+            <param name="d"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:HistoryControlLib.Behaviors.SelectionChangedCommand.Selection_Changed(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+            This method is called when the selection changed event occurs. The sender should be the control
+            on which this behaviour is attached - so we convert the sender into a <seealso cref="T:System.Windows.UIElement"/>
+            and receive the Command through the <seealso cref="M:HistoryControlLib.Behaviors.SelectionChangedCommand.GetChangedCommand(System.Windows.DependencyObject)"/> getter listed above.
+            
+            This implementation supports binding of delegate commands and routed commands.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:HistoryControlLib.Controls.LocationsDropDown">
+            <summary>
+            Implements a Locations Drop Down control which is basically a combobox
+            without the display of a selected item (control has only a Chevron drop
+            down button and a drop down list).
+            
+            This control is useful if the selected element is displayed elsewhere in
+            the application.
+            </summary>
+        </member>
+        <member name="M:HistoryControlLib.Controls.LocationsDropDown.#cctor">
+            <summary>
+            Static constructor.
+            </summary>
+        </member>
+        <member name="T:HistoryControlLib.Factory`1">
+            <summary>
+            Implements a generic factory for creating browse history
+            objects that adhere to the <seealso cref="T:HistoryControlLib.Interfaces.IBrowseHistory`1"/>
+            interface.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:HistoryControlLib.Factory`1.#ctor">
+            <summary>
+            Hidden class constructor.
+            </summary>
+        </member>
+        <member name="M:HistoryControlLib.Factory`1.CreateBrowseNavigator">
+            <summary>
+            Creates a browse history object that keeps track of a users browse
+            hostory based on the items defined through {T}.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:HistoryControlLib.Themes.ResourceKeys">
+            <summary>
+            Implements a static theming keys that are used for styling and theming in this library.
+            </summary>
+        </member>
+        <member name="F:HistoryControlLib.Themes.ResourceKeys.ControlAccentColorKey">
+            <summary>
+            Accent Color Key and Accent Brush Key
+            These keys are used to accent elements in the UI
+            (e.g.: Color of Activated Normal Window Frame, ResizeGrip, Focus or MouseOver input elements)
+            </summary>
+        </member>
+        <member name="F:HistoryControlLib.Themes.ResourceKeys.ControlAccentBrushKey">
+            <summary>
+            Accent Brush Key - This Brush key is used to accent elements in the UI
+            (e.g.: Color of Activated Normal Window Frame, ResizeGrip, Focus or MouseOver input elements)
+            </summary>
+        </member>
+        <member name="F:HistoryControlLib.Themes.ResourceKeys.ControlNormalForegroundKey">
+            <summary>
+            Unspecific normal foreground <see cref="T:System.Windows.Media.Color"/> key.
+            </summary>
+        </member>
+        <member name="F:HistoryControlLib.Themes.ResourceKeys.ControlNormalBackgroundKey">
+            <summary>
+            Unspecific normal background <see cref="T:System.Windows.Media.Color"/> key.
+            </summary>
+        </member>
+        <member name="F:HistoryControlLib.Themes.ResourceKeys.ControlNormalForegroundBrushKey">
+            <summary>
+            Unspecific normal foreground <see cref="T:System.Windows.Media.Brush"/> key.
+            </summary>
+        </member>
+        <member name="F:HistoryControlLib.Themes.ResourceKeys.ControlNormalBackgroundBrushKey">
+            <summary>
+            Unspecific normal background <see cref="T:System.Windows.Media.Brush"/> key.
+            </summary>
+        </member>
+        <member name="F:HistoryControlLib.Themes.ResourceKeys.ControlNormalBorderKey">
+            <summary>
+            Unspecific normal border <see cref="T:System.Windows.Media.Brush"/> key.
+            </summary>
+        </member>
+        <member name="F:HistoryControlLib.Themes.ResourceKeys.ControlMouseOverBackgroundKey">
+            <summary>
+            Unspecific normal background <see cref="T:System.Windows.Media.Color"/> key for mouse over effects.
+            </summary>
+        </member>
+        <member name="F:HistoryControlLib.Themes.ResourceKeys.ControlMouseOverBackgroundBrushKey">
+            <summary>
+            Unspecific normal background <see cref="T:System.Windows.Media.Brush"/> key for mouse over effects.
+            </summary>
+        </member>
+        <member name="F:HistoryControlLib.Themes.ResourceKeys.ControlItemBorderSelectedKey">
+            <summary>
+            Normal Item background <see cref="T:System.Windows.Media.Brush"/> key for item in ItemsControls, such as, treeviews, listbox etc.
+            </summary>
+        </member>
+        <member name="F:HistoryControlLib.Themes.ResourceKeys.ControlItemBackgroundSelectedKey">
+            <summary>
+            Item background <see cref="T:System.Windows.Media.Brush"/> key for selected items in ItemsControls, such as, treeviews, listbox etc.
+            </summary>
+        </member>
+        <member name="F:HistoryControlLib.Themes.ResourceKeys.ControlItemTextSelectedKey">
+            <summary>
+            Item foreground <see cref="T:System.Windows.Media.Brush"/> key for selected items in ItemsControls, such as, treeviews, listbox etc.
+            </summary>
+        </member>
+        <member name="F:HistoryControlLib.Themes.ResourceKeys.ControlDisabledBackgroundKey">
+            <summary>
+            Item background <see cref="T:System.Windows.Media.Brush"/> key for disabled items in ItemsControls, such as, treeviews, listbox etc.
+            </summary>
+        </member>
+        <member name="F:HistoryControlLib.Themes.ResourceKeys.ControlDisabledForegroundKey">
+            <summary>
+            Item foreground <see cref="T:System.Windows.Media.Brush"/> key for disabled items in ItemsControls, such as, treeviews, listbox etc.
+            </summary>
+        </member>
+        <member name="F:HistoryControlLib.Themes.ResourceKeys.ControlDisabledBorderKey">
+            <summary>
+            Item border <see cref="T:System.Windows.Media.Brush"/> key for disabled items in ItemsControls, such as, treeviews, listbox etc.
+            </summary>
+        </member>
+        <member name="F:HistoryControlLib.Themes.ResourceKeys.PopUpControlNormalBackgroundKey">
+            <summary>
+            PopUp control background <see cref="T:System.Windows.Media.Brush"/> key for disabled items in ItemsControls, such as, treeviews, listbox etc.
+            </summary>
+        </member>
+        <member name="F:HistoryControlLib.Themes.ResourceKeys.PopUpControlNormalBorderKey">
+            <summary>
+            PopUp control border <see cref="T:System.Windows.Media.Brush"/> key for disabled items in ItemsControls, such as, treeviews, listbox etc.
+            </summary>
+        </member>
+        <member name="F:HistoryControlLib.Themes.ResourceKeys.HistoryButtonStyleKey">
+            <summary>
+            Determines the style of the history (forward, backward, up) buttons in BrowseHistory display.
+            </summary>
+        </member>
+        <member name="F:HistoryControlLib.Themes.ResourceKeys.HistoryToggleButtonStyleKey">
+            <summary>
+            Determines the style of the toggle drop down button in BrowseHistory display.
+            This button is usually a clickable down chevron symbol with a pop-up list of recent
+            locations underneath.
+            </summary>
+        </member>
+        <member name="F:HistoryControlLib.Themes.ResourceKeys.ArrowGeometryKey">
+            <summary>
+            Defines an arraow Geometry that can be used in a Path object to style
+            forward, backward, and Up buttons.
+            </summary>
+        </member>
+        <member name="T:HistoryControlLib.ViewModels.Base.BaseViewModel">
+            <summary>
+            Every ViewModel class is required to implement the INotifyPropertyChanged
+            interface in order to tell WPF when a property changed (for instance, when
+            a method or setter is executed).
+            
+            Therefore, the PropertyChanged methode has to be called when data changes,
+            because the relevant properties may or may not be bound to GUI elements,
+            which in turn have to refresh their display.
+            
+            The PropertyChanged method is to be called by the members and properties of
+            the class that derives from this class. Each call contains the name of the
+            property that has to be refreshed.
+            
+            The BaseViewModel is derived from from System.Windows.DependencyObject to allow
+            resulting ViewModels the implemantion of dependency properties. Dependency properties
+            in turn are useful when working with IValueConverter and ConverterParameters.
+            </summary>
+        </member>
+        <member name="E:HistoryControlLib.ViewModels.Base.BaseViewModel.PropertyChanged">
+            <summary>
+            Standard event handler of the <seealso cref="T:System.ComponentModel.INotifyPropertyChanged"/> interface
+            </summary>
+        </member>
+        <member name="M:HistoryControlLib.ViewModels.Base.BaseViewModel.NotifyPropertyChanged``1(System.Linq.Expressions.Expression{System.Func{``0}})">
+            <summary>
+            Tell bound controls (via WPF binding) to refresh their display.
+            
+            Sample call: this.NotifyPropertyChanged(() => this.IsSelected);
+            where 'this' is derived from <seealso cref="T:HistoryControlLib.ViewModels.Base.BaseViewModel"/>
+            and IsSelected is a property.
+            </summary>
+            <typeparam name="TProperty"></typeparam>
+            <param name="property"></param>
+        </member>
+        <member name="M:HistoryControlLib.ViewModels.Base.BaseViewModel.OnPropertyChanged(System.String)">
+            <summary>
+            Tell bound controls (via WPF binding) to refresh their display.
+            
+            Sample call: this.OnPropertyChanged("IsSelected");
+            where 'this' is derived from <seealso cref="T:HistoryControlLib.ViewModels.Base.BaseViewModel"/>
+            and IsSelected is a property.
+            </summary>
+            <param name="propertyName">Name of property to refresh</param>
+        </member>
+        <member name="T:HistoryControlLib.ViewModels.BrowseHistory`1">
+            <summary>
+            Implements a navigational list of recent locations which were recently
+            visited and may be suggested for re-visitation.
+            </summary>
+        </member>
+        <member name="M:HistoryControlLib.ViewModels.BrowseHistory`1.#ctor">
+            <summary>
+            Class constructor
+            </summary>
+        </member>
+        <member name="P:HistoryControlLib.ViewModels.BrowseHistory`1.Locations">
+            <summary>
+            Gets a list of recently visited locations.
+            </summary>
+        </member>
+        <member name="P:HistoryControlLib.ViewModels.BrowseHistory`1.Count">
+            <summary>
+            Gets the size of the currently available list of locations.
+            </summary>
+        </member>
+        <member name="P:HistoryControlLib.ViewModels.BrowseHistory`1.SelectedIndex">
+            <summary>
+            Gets a current visiting location (if any) or
+            -1 if there is no current location available.
+            </summary>
+        </member>
+        <member name="P:HistoryControlLib.ViewModels.BrowseHistory`1.SelectedItem">
+            <summary>
+            Gets the currently selected item or default(t) (usually null)
+            if there is no currently selected item.
+            </summary>
+        </member>
+        <member name="P:HistoryControlLib.ViewModels.BrowseHistory`1.NextBackwardItem">
+            <summary>
+            Gets the item that would be selected next if we where to navigate back to the
+            next item (if any) in the current list of recent locations.
+            </summary>
+        </member>
+        <member name="P:HistoryControlLib.ViewModels.BrowseHistory`1.NextForwardItem">
+            <summary>
+            Gets the item that would be selected next if we where to navigate back to the
+            next item (if any) in the current list of recent locations.
+            </summary>
+        </member>
+        <member name="P:HistoryControlLib.ViewModels.BrowseHistory`1.CanForward">
+            <summary>
+            Determines if forward navigation within the current set of locations
+            is possible (returns true) - based on set of locations and SelectedIndex
+            or not (returns false).
+            </summary>
+        </member>
+        <member name="P:HistoryControlLib.ViewModels.BrowseHistory`1.CanBackward">
+            <summary>
+            Determines if backward navigation is possible (returns true)
+            (based on set of locations and SelectedIndex) or not (returns false).
+            </summary>
+        </member>
+        <member name="M:HistoryControlLib.ViewModels.BrowseHistory`1.ClearLocations">
+            <summary>
+            Removes all currently logged locations and sets:
+            <seealso cref="P:HistoryControlLib.ViewModels.BrowseHistory`1.SelectedIndex"/> = -1
+            </summary>
+        </member>
+        <member name="M:HistoryControlLib.ViewModels.BrowseHistory`1.SetSelectedIndex(System.Int32)">
+            <summary>
+            Set the <seealso cref="P:HistoryControlLib.ViewModels.BrowseHistory`1.SelectedIndex"/> property within the currently
+            available collection of locations or throws an exception
+            if the requested index is out of bounds.
+            </summary>
+        </member>
+        <member name="M:HistoryControlLib.ViewModels.BrowseHistory`1.Forward(`0)">
+             <summary>
+             Navigates forward in the list of currently available locations.
+            
+             The implemented behavior depends on the current set of locations
+             and the selected element within that set of locations.
+            
+             The method adds the new item at index 0 if the currently selected item
+             has the index 0 or if the current list of locations is empty (SelectedIndex = -1).
+            
+             The new item is inserted at SelectedIndex -1 and the SelectedIndex is set to that item.
+             All items before the new item are removed.
+            
+             All items with an index greater limit n are removed,
+             if the list gets larger than limit n.
+             </summary>
+        </member>
+        <member name="M:HistoryControlLib.ViewModels.BrowseHistory`1.Forward">
+            <summary>
+            Navigates forward within the current set of locations (without adding a location)
+            and returns true if this is possible - based on set of locations and SelectedIndex
+            or false, if navigation forward is not possible.
+            </summary>
+        </member>
+        <member name="M:HistoryControlLib.ViewModels.BrowseHistory`1.Backward">
+             <summary>
+             Navigates backward in the list of currently available locations.
+            
+             Returns false if backward navigation is possible or true, otherwise.
+             </summary>
+        </member>
+        <member name="M:HistoryControlLib.ViewModels.BrowseHistory`1.ToString">
+            <summary>
+            Implements standard override for ToString() method.
+            </summary>
+        </member>
+        <member name="M:HistoryControlLib.ViewModels.BrowseHistory`1.ReplaceLocationAt(System.Int32,`0)">
+            <summary>
+            Updates the item with index <paramref name="pos"/> to recycle spot
+            in list with item <paramref name="item"/> (old item is replaced with new item).
+            </summary>
+            <param name="pos"></param>
+            <param name="item"></param>
+        </member>
+        <member name="T:HistoryControlLib.Interfaces.IBrowseHistory`1">
+            <summary>
+            Defines an interface to an object that implements a navigational list of
+            recent locations, which were recently visited, and may be suggested for
+            re-visitation.
+            
+            The object that implements this interface can manage recently visited locations and supports:
+            
+            - adding more recently visited locations
+            - forward and backward navigation, and
+            - selection of any position within the given set of locations.
+            </summary>
+        </member>
+        <member name="P:HistoryControlLib.Interfaces.IBrowseHistory`1.SelectedIndex">
+            <summary>
+            Gets a current visiting location (if any) or
+            -1 if there is no current location available.
+            </summary>
+        </member>
+        <member name="P:HistoryControlLib.Interfaces.IBrowseHistory`1.Locations">
+            <summary>
+            Gets a list of recently visited locations.
+            </summary>
+        </member>
+        <member name="P:HistoryControlLib.Interfaces.IBrowseHistory`1.Count">
+            <summary>
+            Gets the size of the currently available list of locations.
+            </summary>
+        </member>
+        <member name="P:HistoryControlLib.Interfaces.IBrowseHistory`1.SelectedItem">
+            <summary>
+            Gets the currently selected item or default(t) (usually null)
+            if there is no currently selected item.
+            </summary>
+        </member>
+        <member name="P:HistoryControlLib.Interfaces.IBrowseHistory`1.CanBackward">
+            <summary>
+            Determines if backward navigation is possible (returns true)
+            (based on set of locations and SelectedIndex) or not (returns false).
+            </summary>
+        </member>
+        <member name="P:HistoryControlLib.Interfaces.IBrowseHistory`1.CanForward">
+            <summary>
+            Determines if forward navigation within the current set of locations
+            is possible (returns true) - based on set of locations and SelectedIndex
+            or not (returns false).
+            </summary>
+        </member>
+        <member name="P:HistoryControlLib.Interfaces.IBrowseHistory`1.NextBackwardItem">
+            <summary>
+            Gets the item that would be selected next if we where to navigate back to the
+            next item (if any) in the current list of recent locations.
+            </summary>
+        </member>
+        <member name="P:HistoryControlLib.Interfaces.IBrowseHistory`1.NextForwardItem">
+            <summary>
+            Gets the item that would be selected next if we where to navigate back to the
+            next item (if any) in the current list of recent locations.
+            </summary>
+        </member>
+        <member name="M:HistoryControlLib.Interfaces.IBrowseHistory`1.Backward">
+             <summary>
+             Navigates backward in the list of currently available locations.
+            
+             Returns false if backward navigation is possible or true, otherwise.
+             </summary>
+        </member>
+        <member name="M:HistoryControlLib.Interfaces.IBrowseHistory`1.ClearLocations">
+            <summary>
+            Removes all currently logged locations and sets:
+            <seealso cref="P:HistoryControlLib.Interfaces.IBrowseHistory`1.SelectedIndex"/> = -1
+            </summary>
+        </member>
+        <member name="M:HistoryControlLib.Interfaces.IBrowseHistory`1.Forward">
+            <summary>
+            Navigates forward within the current set of locations (without adding a location)
+            and returns true if this is possible - based on set of locations and SelectedIndex
+            or false, if navigation forward is not possible.
+            </summary>
+        </member>
+        <member name="M:HistoryControlLib.Interfaces.IBrowseHistory`1.Forward(`0)">
+             <summary>
+             Navigates forward in the list of currently available locations.
+            
+             The implemented behavior depends on the current set of locations
+             and the selected element within that set of locations.
+            
+             The method adds the new item at index 0 if the currently selected item
+             has the index 0 or if the current list of locations is empty (SelectedIndex = -1).
+            
+             The new item is inserted at SelectedIndex -1 and the SelectedIndex is set to that item.
+             All items before the new item are removed.
+            
+             All items with an index greater limit n are removed,
+             if the list gets larger than limit n.
+             </summary>
+        </member>
+        <member name="M:HistoryControlLib.Interfaces.IBrowseHistory`1.SetSelectedIndex(System.Int32)">
+            <summary>
+            Set the <seealso cref="P:HistoryControlLib.Interfaces.IBrowseHistory`1.SelectedIndex"/> property within the currently
+            available collection of locations or throws an exception
+            if the requested index is out of bounds.
+            </summary>
+        </member>
+        <member name="T:HistoryControlLib.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:HistoryControlLib.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:HistoryControlLib.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
+        </member>
+    </members>
+</doc>
