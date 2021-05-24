@@ -54,8 +54,8 @@
                         <MenuItem Header="Copy" Click="MenuItem_Click_1"/>
                         <MenuItem Header="Delete" Click="MenuItem_Click_2"/>
                         <MenuItem Header="Paste" Click="MenuItem_Click_4"/>
-                       
                         <MenuItem Header="Cut" Click="MenuItem_Click_3"/>
+                        <MenuItem Header="New" Click="MenuItem_Click_5" />
                     </ContextMenu>
                 </ListBox.ContextMenu>
 

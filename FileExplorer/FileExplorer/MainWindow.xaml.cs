@@ -165,7 +165,8 @@ namespace FileExplorer
                     fd.FileCreation = allFolders[i].CreationTime.ToString();
                     fd.FileImage = $"pack://application:,,,/Images/folder-open.png";
                     fd.IsFolder = true;
-                    fd.Path = fullPath + "\\" + allFolders[i].Name;
+                    fd.Path = fullPath + allFolders[i].Name;
+
                     details.Add(fd);
                 }
 
@@ -292,7 +293,18 @@ namespace FileExplorer
         {
             FileDetails selected = myList.SelectedItem as FileDetails;
             var path = selected.Path;
-            System.Diagnostics.Process.Start(path);
+            var allFolders = new DirectoryInfo(path).GetDirectories();
+            var details = new List<FileDetails>();
+
+            for (int i = 0; i < allFolders.Length; i++)
+            {
+                var detail = new FileDetails();
+                detail.FileName = allFolders[i].Name;
+
+                details.Add(detail);
+            }
+
+            myList.ItemsSource = details;
         }
 
         private void MenuItem_Click_3(object sender, RoutedEventArgs e)
@@ -300,11 +312,11 @@ namespace FileExplorer
            
             FileDetails selected = myList.SelectedItem as FileDetails;
             var path = selected.Path;
-            string appPath = System.IO.Path.GetDirectoryName(path);
+          //  string appPath = System.IO.Path.GetDirectoryName(path);
             Console.WriteLine(path);
             try
             {
-                Directory.Move(@details + "\\", @appPath + "\\");
+                Directory.Move(@details + "\\", @path);
             }
             catch { }
 
@@ -316,15 +328,37 @@ namespace FileExplorer
 
             FileDetails selected = myList.SelectedItem as FileDetails;
             var path = selected.Path;
-            string appPath = System.IO.Path.GetDirectoryName(path);
-            CopyFilesRecursively(details, appPath);
+            Console.WriteLine(path);
+           // string appPath = System.IO.Path.GetDirectoryName(path);
+            CopyFilesRecursively(details, path);
             // File.Move
-           System.IO.Directory.Move(@details + "\\", @appPath + "\\");
-         
+           System.IO.Directory.Move(@details + "\\", @path );
+
+        }
+
+        private void MenuItem_Click_5(object sender, RoutedEventArgs e)
+        {
+
+            FileDetails selected = myList.SelectedItem as FileDetails;
+            var path = selected.Path;
+            string a = path + "\\NewFolder";
+            Console.WriteLine(a);
+            if (!Directory.Exists(a))
+            {
+                Directory.CreateDirectory(a);
+            }
+            else
+            {
+                var i = 1;
+                string b = a +"("+i++ +")";
+                Console.WriteLine(b);
+                Directory.CreateDirectory(b);
+
+            }
 
 
-        } 
 
+        }
     }
 }
 
